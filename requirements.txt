@@ -1,0 +1,5 @@
+Qt 6.x
+Ollama >= 0.1.0
+Model: SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M
+CMake >= 3.16
+MinGW 64-bit lub MSVC 2022

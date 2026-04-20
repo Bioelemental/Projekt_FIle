@@ -1,0 +1,9 @@
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizer.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizerTests.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/test.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/edit_cache.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/rebuild_cache.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizer_autogen_timestamp_deps.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizer_autogen.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizerTests_autogen_timestamp_deps.dir
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/CMakeFiles/FileOrganizerTests_autogen.dir
