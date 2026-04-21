@@ -1,5 +1,5 @@
 CMakeFiles/FileOrganizerTests.dir/tests/test_main.cpp.obj: \
- C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\tests\test_main.cpp \
+ C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\tests\test_main.cpp \
  D:/Qt/6.11.0/mingw_64/include/QtTest/QtTest \
  D:/Qt/6.11.0/mingw_64/include/QtTest/QtTestDepends \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QtCore \
@@ -774,11 +774,31 @@ CMakeFiles/FileOrganizerTests.dir/tests/test_main.cpp.obj: \
  D:/Qt/6.11.0/mingw_64/include/QtWidgets/QSizePolicy \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QMetaEnum \
  D:/Qt/6.11.0/mingw_64/include/QtTest/qttestversion.h \
- C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h \
+ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QObject \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QProcess \
- C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/llmclient.h \
+ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/llmclient.h \
  D:/Qt/6.11.0/mingw_64/include/QtNetwork/QNetworkAccessManager \
  D:/Qt/6.11.0/mingw_64/include/QtNetwork/QNetworkReply \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/QtConcurrent \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/QtConcurrentDepends \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtaskbuilder.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentstoredfunctioncall.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrent_global.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentexports.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentrunbase.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentcompilertest.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentfilter.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentfilterkernel.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentiteratekernel.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentmedian.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentthreadengine.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentmapkernel.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentreducekernel.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentfunctionwrappers.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentmap.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentrun.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrenttask.h \
+ D:/Qt/6.11.0/mingw_64/include/QtConcurrent/qtconcurrentversion.h \
  C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizerTests_autogen/include/test_main.moc \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qtmochelpers.h

@@ -5,21 +5,28 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-/**
- * @brief Klasa do komunikacji z lokalnym modelem LLM przez REST API
- */
+
 class LlmClient : public QObject
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief Konstruktor
+     * @param parent rodzic QObject
+     */
     explicit LlmClient(QObject *parent = nullptr);
+
+  
     void generateScript(const QString &userPrompt,
                         const QString &folderPath,
                         const QString &os);
 
 signals:
+    /** Emitted when a cleaned script is ready. */
     void scriptReady(const QString &script);
+
+    /** Emitted on error with human-readable message. */
     void errorOccurred(const QString &error);
 
 private:

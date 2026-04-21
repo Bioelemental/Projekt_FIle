@@ -1,0 +1,107 @@
+# Build directories
+/build/
+/build-*/
+*/build/
+/out/
+/bin/
+
+# CMake generated files and build artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+install_manifest.txt
+compile_commands.json
+
+# Qt Creator / QMake
+*.pro.user
+*.pro.user.*
+*.qmake.stash
+*.user
+*.user.*
+*.autosave
+*.creator.*
+*.db
+
+# Visual Studio / MSVC / CLion
+.vs/
+*.vcxproj.user
+*.suo
+*.userosscache
+.idea/
+*.iml
+
+# Generated sources by moc/uic/rcc and autogen folders
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.moc
+*_autogen/
+*_autogen_*/
+
+# Qt CMake autogen folders (keep patterns used in this project)
+FileOrganizer_autogen/
+FileOrganizerTests_autogen/
+CMakeFiles/*Autogen*/
+
+# Generated documentation
+docs/
+docs/html/
+doxygen/
+html/
+
+# Test/build outputs and executables
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+
+# Coverage and profiling
+coverage.*
+*.gcda
+*.gcno
+*.prof
+
+# Temporary and backup files
+*~
+*.swp
+*.swo
+*.tmp
+*.temp
+*.log
+*.pid
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python/virtualenv helpers (if used for scripts)
+venv/
+.env
+.venv/
+__pycache__/
+
+# Local environment / user settings / secrets
+local.properties
+*.local
+settings.ini
+*.key
+*.crt
+
+# Misc
+tags
+*.bak
+*.old
+
+# Keep README, requirements and source files tracked
+!README.md
+!requirements.txt

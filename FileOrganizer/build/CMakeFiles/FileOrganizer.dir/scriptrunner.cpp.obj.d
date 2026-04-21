@@ -1,6 +1,6 @@
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: \
- C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.cpp \
- C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.h \
+ C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.cpp \
+ C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QObject \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qobject.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qobjectdefs.h \

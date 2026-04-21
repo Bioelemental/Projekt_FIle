@@ -1,4 +1,4 @@
-C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizer_autogen/EWIEGA46WW/moc_scriptrunner.cpp: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h \
+C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizer_autogen/EWIEGA46WW/moc_scriptrunner.cpp: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.h \
   C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizer_autogen/moc_predefs.h \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QObject \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QProcess \

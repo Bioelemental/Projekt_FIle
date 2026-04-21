@@ -3,6 +3,10 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QRegularExpression>
+#include <QTimer>
+#include <QCoreApplication>
+#include <QProcess>
+
 /**
  * @brief Konstruktor LlmClient
  */
@@ -11,9 +15,7 @@ LlmClient::LlmClient(QObject *parent) : QObject(parent)
     manager = new QNetworkAccessManager(this);
 }
 
-/**
- * @brief Wysyła zapytanie do Ollama i odbiera wygenerowany skrypt
- */
+
 void LlmClient::generateScript(const QString &userPrompt,
                                const QString &folderPath,
                                const QString &os)
@@ -28,10 +30,7 @@ void LlmClient::generateScript(const QString &userPrompt,
                        "Move-Item -Path $file -Destination $folderPath "
                        "gdzie $folderPath to FOLDER nie pełna ścieżka pliku. "
                        "Aby filtrować wiele rozszerzeń ZAWSZE używaj "
-                       "osobnego Get-ChildItem dla każdego rozszerzenia osobno, "
-                       "NIGDY nie używaj przecinka w -Filter. "
-                       "Przykład dla jpg i jpeg: "
-                       "Get-ChildItem -Filter *.jpg; Get-ChildItem -Filter *.jpeg. "
+                       "osobnego Get-ChildItem dla każdego rozszerzenia osobno. "
                        "Aby utworzyć folder: "
                        "New-Item -ItemType Directory -Force -Path $folder. "
                        "Po każdym przeniesieniu: Write-Host 'MOVED: plik -> cel'. "
@@ -57,51 +56,87 @@ void LlmClient::generateScript(const QString &userPrompt,
     json["stream"] = false;
     json["options"] = QJsonObject{{"num_predict", 1024}};
 
-    QUrl url(API_URL);
+    // Pozwól nadpisać URL przez zmienną środowiskową
+    QString apiUrl = QString::fromUtf8(qgetenv("OLLAMA_API_URL"));
+    if (apiUrl.isEmpty()) apiUrl = API_URL;
+
+    QUrl url(apiUrl);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     QByteArray data = QJsonDocument(json).toJson();
     QNetworkReply *reply = manager->post(request, data);
 
+    // Timeout dla odpowiedzi sieciowej
+    QTimer *netTimer = new QTimer(reply);
+    netTimer->setSingleShot(true);
+    netTimer->start(8000);
+    connect(netTimer, &QTimer::timeout, reply, [reply, this]() {
+        if (!reply->isFinished()) {
+            reply->abort();
+            emit errorOccurred("Timeout: brak odpowiedzi od serwera LLM (Ollama).");
+        }
+    });
+
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        // Jeśli miał miejsce błąd sieciowy -> zgłoś i posprzątaj
         if (reply->error() != QNetworkReply::NoError) {
-            emit errorOccurred("Błąd połączenia z Ollama: " +
-                               reply->errorString());
+            emit errorOccurred(QString("Błąd połączenia z Ollama: %1")
+                               .arg(reply->errorString()));
             reply->deleteLater();
             return;
         }
 
-        QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
-        QString script = doc.object()["response"].toString();
+        // Spróbuj sparsować JSON, a jeśli nie - użyj surowego tekstu
+        QByteArray raw = reply->readAll();
+        QString script;
+        QJsonParseError parseError;
+        QJsonDocument doc = QJsonDocument::fromJson(raw, &parseError);
+        if (!doc.isNull() && doc.isObject()) {
+            QJsonObject obj = doc.object();
+            // Różne wersje Ollama mogą zwrócić pole "response" lub "text"
+            if (obj.contains("response")) {
+                script = obj.value("response").toString();
+            } else if (obj.contains("text")) {
+                script = obj.value("text").toString();
+            } else {
+                // fallback: całe body jako tekst
+                script = QString::fromUtf8(raw);
+            }
+        } else {
+            script = QString::fromUtf8(raw);
+        }
 
-        // Usuń blok <think>...</think> który Bielik dodaje
-        script.remove(QRegularExpression("<think>[\\s\\S]*?</think>",
-                                         QRegularExpression::CaseInsensitiveOption));
-        // Usuń markdown
-        script.remove(QRegularExpression("```powershell\\s*",
-                                         QRegularExpression::CaseInsensitiveOption));
-        script.remove(QRegularExpression("```bash\\s*",
-                                         QRegularExpression::CaseInsensitiveOption));
-        script.remove(QRegularExpression("```\\s*"));
+        // Usuwanie bloków <think>...</think> (wielowierszowo)
+        QRegularExpression thinkRe("<think>[\\s\\S]*?</think>",
+                                  QRegularExpression::CaseInsensitiveOption);
+        script.remove(thinkRe);
 
-        // Usuń linie które nie są kodem (komentarze opisowe po angielsku/polsku)
-        QStringList lines = script.split("\n");
+        // Usuń bloki markdown ```...``` wraz z opcją języka 
+        QRegularExpression fenceRe("(?s)```[a-zA-Z0-9_-]*\\s*.*?```",
+                                   QRegularExpression::CaseInsensitiveOption);
+        script.remove(fenceRe);
+
+        // Usuń pojedyncze otwierające znaczniki ```powershell lub ```bash
+        QRegularExpression fenceOpenRe("(?i)```(?:powershell|bash)?\\s*");
+        script.remove(fenceOpenRe);
+
+        // Usuń linie opisowe — angielskie i polskie początki
+        QRegularExpression nonCodeLineRe(
+            "^(\\s*(#|//).*|\\s*(First|Next|Now|This|The|Note|Please|Uwaga|Najpierw|Następnie|Teraz|Proszę).*)$",
+            QRegularExpression::CaseInsensitiveOption | QRegularExpression::MultilineOption);
+        // Dzielimy na linie i filtrujemy, aby zachować kolejność i puste linie usunąć
+        QStringList lines = script.split(QRegularExpression("\\r?\\n"));
         QStringList cleanLines;
         for (const QString &line : lines) {
             QString trimmed = line.trimmed();
             if (trimmed.isEmpty()) continue;
-            if (trimmed.startsWith("#")) continue;
-            if (trimmed.startsWith("First")) continue;
-            if (trimmed.startsWith("Next")) continue;
-            if (trimmed.startsWith("Now")) continue;
-            if (trimmed.startsWith("This")) continue;
-            if (trimmed.startsWith("The")) continue;
-            if (trimmed.startsWith("Note")) continue;
-            if (trimmed.startsWith("~")) continue;
+            if (trimmed.startsWith('#') || trimmed.startsWith("//")) continue;
+            if (nonCodeLineRe.match(line).hasMatch()) continue;
             cleanLines.append(line);
         }
         script = cleanLines.join("\n").trimmed();
+
         // Napraw brakujące nawiasy klamrowe
         int openBraces = script.count('{');
         int closeBraces = script.count('}');
@@ -109,7 +144,13 @@ void LlmClient::generateScript(const QString &userPrompt,
             script += "\n}";
             closeBraces++;
         }
-        emit scriptReady(script);
+
+        if (script.isEmpty()) {
+            emit errorOccurred("Otrzymano pusty skrypt od modelu LLM.");
+        } else {
+            emit scriptReady(script);
+        }
+
         reply->deleteLater();
     });
 }
