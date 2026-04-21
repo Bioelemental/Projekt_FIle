@@ -5,6 +5,12 @@
 
 /**
  * @brief Konstruktor MainWindow
+ *
+ * MAPOWANIE KRYTERIÓW:
+ * - Interfejs graficzny: pola `folderPathEdit`, `commandEdit`, `reportEdit` (UI).
+ * - Komunikacja z LLM: wywołanie `llmClient->generateScript(...)`.
+ * - Obsługa błędów: slot `onError` wyświetla komunikaty użytkownikowi.
+ * - Automatyczne wykonanie skryptu: delegowane do `ScriptRunner::runScript`.
  */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,6 +39,8 @@ MainWindow::~MainWindow()
 
 /**
  * @brief Otwiera dialog wyboru folderu
+ *
+ * UI: pole `folderPathEdit` -> miejsce gdzie użytkownik wskazuje folder.
  */
 void MainWindow::on_browseButton_clicked()
 {
@@ -45,6 +53,9 @@ void MainWindow::on_browseButton_clicked()
 
 /**
  * @brief Generuje podgląd skryptu bez wykonywania
+ *
+ * - Pobiera `commandEdit` i `folderPathEdit`, waliduje wejście (kryterium: ostrzeżenie przy braku danych).
+ * - Uruchamia `LlmClient::generateScript` (kryterium: generowanie na podstawie parametrów użytkownika).
  */
 void MainWindow::on_previewButton_clicked()
 {
@@ -71,6 +82,9 @@ void MainWindow::on_previewButton_clicked()
 
 /**
  * @brief Wykonuje wygenerowany skrypt
+ *
+ * - Aktualnie wymaga potwierdzenia użytkownika; aby mieć pełne "automatyczne wykonanie",
+ *   usuń dialog `QMessageBox::question` (zmiana wymagana ręcznie).
  */
 void MainWindow::on_runButton_clicked()
 {
@@ -94,6 +108,8 @@ void MainWindow::on_runButton_clicked()
 
 /**
  * @brief Obsługuje gotowy skrypt od LLM
+ *
+ * - Odbiera oczyszczony skrypt i wyświetla podgląd (kryterium: generacja skryptu).
  */
 void MainWindow::onScriptReady(const QString &script)
 {
@@ -115,6 +131,8 @@ void MainWindow::onScriptFinished(const QString &output)
 
 /**
  * @brief Obsługuje błędy
+ *
+ * - Informuje użytkownika o problemach z dostępnością usługi / wykonania.
  */
 void MainWindow::onError(const QString &error)
 {

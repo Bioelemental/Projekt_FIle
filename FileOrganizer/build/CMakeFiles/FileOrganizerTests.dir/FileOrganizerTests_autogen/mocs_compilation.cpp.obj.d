@@ -393,4 +393,14 @@ CMakeFiles/FileOrganizerTests.dir/FileOrganizerTests_autogen/mocs_compilation.cp
  C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\FileOrganizerTests_autogen\EWIEGA46WW/moc_scriptrunner.cpp \
  C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QProcess \
- D:/Qt/6.11.0/mingw_64/include/QtCore/qprocess.h
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qprocess.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/QThread \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qthread.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h

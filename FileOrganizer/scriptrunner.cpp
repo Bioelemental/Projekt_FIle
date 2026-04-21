@@ -6,29 +6,26 @@
 #include <QTextStream>
 
 /**
- * @brief Konstruktor ScriptRunner
+ * @brief Konstruktor workera
  */
-ScriptRunner::ScriptRunner(QObject *parent) : QObject(parent)
+ScriptRunnerWorker::ScriptRunnerWorker(QObject *parent) : QObject(parent)
 {
-    process = new QProcess(this);
 }
 
 /**
- * @brief Wykrywa system operacyjny
+ * @brief Wykonaj skrypt w wątku workera.
+ *
+ * - Tworzy plik tymczasowy, uruchamia QProcess w tym samym wątku (bez blokowania UI).
+ * - Obsługuje timeout i zwraca wynik przez sygnały.
  */
-QString ScriptRunner::detectOS()
+void ScriptRunnerWorker::doRunScript(const QString &scriptContent)
 {
+    QString os;
 #ifdef Q_OS_WIN
-    return "Windows";
+    os = "Windows";
 #else
-    return "Linux";
+    os = "Linux";
 #endif
-}
-
-
-void ScriptRunner::runScript(const QString &scriptContent)
-{
-    QString os = detectOS();
     QString suffix = (os == "Windows") ? ".ps1" : ".sh";
 
     QTemporaryFile tmpFile;
@@ -40,7 +37,6 @@ void ScriptRunner::runScript(const QString &scriptContent)
         return;
     }
 
-    // Na Windows dopisujemy BOM, aby PowerShell poprawnie czytał polskie znaki w starszych konfiguracjach
 #ifdef Q_OS_WIN
     tmpFile.write("\xEF\xBB\xBF");
 #endif
@@ -48,17 +44,16 @@ void ScriptRunner::runScript(const QString &scriptContent)
     tmpFile.close();
     QString scriptPath = tmpFile.fileName();
 
-    // Upewnij się że nie ma starych połączeń
-    process->disconnect();
-
+    // Utwórz QProcess jako dziecko workera — będzie działał w tym wątku
+    QProcess *process = new QProcess(this);
     process->setProcessChannelMode(QProcess::MergedChannels);
 
+    // Po zakończeniu procesu: odczytaj output / errors i usuń plik tymczasowy
     connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-            this, [this, scriptPath](int exitCode, QProcess::ExitStatus) {
+            this, [this, process, scriptPath](int /*exitCode*/, QProcess::ExitStatus) {
                 QString output = process->readAllStandardOutput();
                 QString errors = process->readAllStandardError();
 
-                // Usuń plik tymczasowy
                 QFile::remove(scriptPath);
 
                 if (!errors.isEmpty()) {
@@ -66,13 +61,15 @@ void ScriptRunner::runScript(const QString &scriptContent)
                 } else {
                     emit finished(output.trimmed());
                 }
+
+                process->deleteLater();
             });
 
     // Timeout wykonania procesu (60s)
     QTimer *procTimer = new QTimer(process);
     procTimer->setSingleShot(true);
     procTimer->start(60000);
-    connect(procTimer, &QTimer::timeout, process, [this, scriptPath]() {
+    connect(procTimer, &QTimer::timeout, process, [this, process, scriptPath]() {
         if (process->state() != QProcess::NotRunning) {
             process->kill();
             QFile::remove(scriptPath);
@@ -81,11 +78,71 @@ void ScriptRunner::runScript(const QString &scriptContent)
     });
 
 #ifdef Q_OS_WIN
-    // Uruchom PowerShell z bypass execution policy
     process->start("powershell", {"-ExecutionPolicy", "Bypass", "-File", scriptPath});
 #else
-    // Nadaj prawa wykonywania i uruchom bash
     QFile::setPermissions(scriptPath, QFile::permissions(scriptPath) | QFileDevice::ExeUser);
     process->start("bash", {scriptPath});
+#endif
+}
+
+/**
+ * @brief Konstruktor ScriptRunner — tworzy wątek i workera
+ */
+ScriptRunner::ScriptRunner(QObject *parent) : QObject(parent)
+{
+    workerThread = new QThread(this);
+    worker = new ScriptRunnerWorker();
+    worker->moveToThread(workerThread);
+
+    // Przekierowanie żądań do workera (kolejkowane połączenie)
+    connect(this, &ScriptRunner::requestRun,
+            worker, &ScriptRunnerWorker::doRunScript,
+            Qt::QueuedConnection);
+
+    // Forward sygnałów z workera do użytkowników ScriptRunner
+    connect(worker, &ScriptRunnerWorker::finished,
+            this, &ScriptRunner::finished);
+    connect(worker, &ScriptRunnerWorker::errorOccurred,
+            this, &ScriptRunner::errorOccurred);
+
+    // Upewnij się, że worker zostanie posprzątany razem z wątkiem
+    connect(workerThread, &QThread::finished, worker, &QObject::deleteLater);
+
+    workerThread->start();
+}
+
+/**
+ * @brief Destruktor — zamyka wątek i czeka
+ */
+ScriptRunner::~ScriptRunner()
+{
+    if (workerThread) {
+        workerThread->quit();
+        workerThread->wait();
+        // worker zostanie usunięty przez powiązanie z finished
+        delete workerThread;
+        workerThread = nullptr;
+        worker = nullptr;
+    }
+}
+
+/**
+ * @brief Publiczne API — żądanie uruchomienia skryptu (nie blokuje)
+ */
+void ScriptRunner::runScript(const QString &scriptContent)
+{
+    // Emitujemy sygnał, worker wykona pracę w swoim wątku (QueuedConnection).
+    emit requestRun(scriptContent);
+}
+
+/**
+ * @brief Wykrywa system operacyjny (bez zmian)
+ */
+QString ScriptRunner::detectOS()
+{
+#ifdef Q_OS_WIN
+    return "Windows";
+#else
+    return "Linux";
 #endif
 }

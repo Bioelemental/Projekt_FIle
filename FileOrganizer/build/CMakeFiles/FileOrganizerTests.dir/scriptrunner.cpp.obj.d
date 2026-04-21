@@ -329,6 +329,16 @@ CMakeFiles/FileOrganizerTests.dir/scriptrunner.cpp.obj: \
  D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cassert \
  D:/Qt/6.11.0/mingw_64/include/QtCore/q20iterator.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qshareddata.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/QThread \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qthread.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h \
+ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QFile \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qfile.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qfiledevice.h \
@@ -397,5 +407,4 @@ CMakeFiles/FileOrganizerTests.dir/scriptrunner.cpp.obj: \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qbasictimer.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qabstracteventdispatcher.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qeventloop.h \
- D:/Qt/6.11.0/mingw_64/include/QtCore/qdeadlinetimer.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QTextStream

@@ -38,6 +38,7 @@ FileOrganizerTests_autogen/timestamp: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FI
   D:/Qt/6.11.0/mingw_64/include/QtCore/QSizeF \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QString \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QStringList \
+  D:/Qt/6.11.0/mingw_64/include/QtCore/QThread \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QTimer \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QUrl \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QVariant \
@@ -1346,6 +1347,10 @@ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stre
 
 D:/Qt/6.11.0/mingw_64/include/QtCore/QString:
 
+D:/Qt/6.11.0/mingw_64/include/QtCore/qcollator.h:
+
+D:/Qt/6.11.0/mingw_64/include/QtCore/QThread:
+
 D:/Qt/6.11.0/mingw_64/include/QtCore/qrandom.h:
 
 D:/Qt/6.11.0/mingw_64/include/QtCore/QVariant:
@@ -1415,8 +1420,6 @@ D:/Qt/6.11.0/mingw_64/include/QtCore/qabstractitemmodel.h:
 D:/Qt/6.11.0/mingw_64/include/QtCore/qdebug.h:
 
 D:/Qt/6.11.0/mingw_64/include/QtCore/qabstractproxymodel.h:
-
-D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/prfchiintrin.h:
 
 D:/Qt/6.11.0/mingw_64/include/QtCore/qalgorithms.h:
 
@@ -1589,8 +1592,6 @@ D:/Qt/6.11.0/mingw_64/include/QtCore/qchar.h:
 D:/Qt/6.11.0/mingw_64/include/QtGui/QBrush:
 
 D:/Qt/6.11.0/mingw_64/include/QtCore/qchronotimer.h:
-
-D:/Qt/6.11.0/mingw_64/include/QtCore/qcollator.h:
 
 D:/Qt/6.11.0/mingw_64/include/QtGui/qvector3d.h:
 
@@ -3183,6 +3184,8 @@ D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h:
 D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pconfigintrin.h:
 
 D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pkuintrin.h:
+
+D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/prfchiintrin.h:
 
 D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/prfchwintrin.h:
 

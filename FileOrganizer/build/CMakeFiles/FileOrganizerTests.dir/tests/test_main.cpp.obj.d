@@ -777,6 +777,7 @@ CMakeFiles/FileOrganizerTests.dir/tests/test_main.cpp.obj: \
  C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QObject \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QProcess \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/QThread \
  C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/llmclient.h \
  D:/Qt/6.11.0/mingw_64/include/QtNetwork/QNetworkAccessManager \
  D:/Qt/6.11.0/mingw_64/include/QtNetwork/QNetworkReply \

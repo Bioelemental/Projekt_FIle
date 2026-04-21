@@ -22,6 +22,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
   D:/Qt/6.11.0/mingw_64/include/QtCore/QSizeF \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QString \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QStringList \
+  D:/Qt/6.11.0/mingw_64/include/QtCore/QThread \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QUrl \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QVariant \
   D:/Qt/6.11.0/mingw_64/include/QtCore/QtCore \

@@ -784,6 +784,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QObject
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QProcess
+ mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QThread
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/q17memory.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/q20bit.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/q20functional.h
@@ -817,6 +818,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qcontainertools_impl.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qdarwinhelpers.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qdatastream.h
+ mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qdeadlinetimer.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qexceptionhandling.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qflags.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qfloat16.h
@@ -879,6 +881,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtdeprecationmarkers.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtenvironmentvariables.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtformat_impl.h
+ mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qthread.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtmetamacros.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtnoop.h
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/qtpreprocessorsupport.h
@@ -905,6 +908,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocator.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_base.h
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_futex.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.tcc
@@ -951,6 +955,8 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/specfun.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_abs.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_mutex.h
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h
@@ -977,6 +983,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h
@@ -990,6 +997,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/condition_variable
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdio
@@ -1008,6 +1016,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/string_conversions.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/type_traits.h
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/functional
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/future
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator
@@ -1015,6 +1024,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory
+ mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric
  mdp:D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional
@@ -1127,6 +1137,7 @@ C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/Fi
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QSizeF
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QString
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QStringList
+ mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QThread
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QUrl
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QVariant
  mdp:D:/Qt/6.11.0/mingw_64/include/QtCore/QtCore

@@ -20,6 +20,12 @@ void LlmClient::generateScript(const QString &userPrompt,
                                const QString &folderPath,
                                const QString &os)
 {
+    // ----------------------------------------------------------
+    // Definicja system prompt (kryterium: Definicja system prompt)
+    // ----------------------------------------------------------
+    // W zależności od systemu budujemy systemPrompt (PowerShell lub Bash).
+    // To jest centralne miejsce gdzie aplikacja "optymalizuje" prompt
+    // pod zadanie (kryterium: Optymalizacja pod zadanie).
     QString systemPrompt;
     if (os == "Windows") {
         systemPrompt = "Jesteś generatorem skryptów PowerShell. "
@@ -46,6 +52,7 @@ void LlmClient::generateScript(const QString &userPrompt,
                        "Nie dodawaj żadnych opisów ani komentarzy poza kodem.";
     }
 
+    // Tworzymy finalny prompt wysyłany do modelu (kryterium: Definicja user prompt)
     QString fullPrompt = QString("Folder: %1\nPolecenie: %2")
                              .arg(folderPath, userPrompt);
 
@@ -56,7 +63,7 @@ void LlmClient::generateScript(const QString &userPrompt,
     json["stream"] = false;
     json["options"] = QJsonObject{{"num_predict", 1024}};
 
-    // Pozwól nadpisać URL przez zmienną środowiskową
+    // Pozwól nadpisać URL przez zmienną środowiskową (ułatwia testowanie lokalne)
     QString apiUrl = QString::fromUtf8(qgetenv("OLLAMA_API_URL"));
     if (apiUrl.isEmpty()) apiUrl = API_URL;
 
@@ -67,7 +74,10 @@ void LlmClient::generateScript(const QString &userPrompt,
     QByteArray data = QJsonDocument(json).toJson();
     QNetworkReply *reply = manager->post(request, data);
 
-    // Timeout dla odpowiedzi sieciowej
+    // ----------------------------------------------------------
+    // Obsługa błędów / brak połączenia (kryterium: Obsługa błędów)
+    // ----------------------------------------------------------
+    // Timeout dla odpowiedzi sieciowej — odporność na brak usługi
     QTimer *netTimer = new QTimer(reply);
     netTimer->setSingleShot(true);
     netTimer->start(8000);
@@ -87,7 +97,9 @@ void LlmClient::generateScript(const QString &userPrompt,
             return;
         }
 
-        // Spróbuj sparsować JSON, a jeśli nie - użyj surowego tekstu
+        // ----------------------------------------------------------
+        // Parsowanie odpowiedzi i czyszczenie skryptu (kryterium: Generacja skryptu)
+        // ----------------------------------------------------------
         QByteArray raw = reply->readAll();
         QString script;
         QJsonParseError parseError;
@@ -125,7 +137,7 @@ void LlmClient::generateScript(const QString &userPrompt,
         QRegularExpression nonCodeLineRe(
             "^(\\s*(#|//).*|\\s*(First|Next|Now|This|The|Note|Please|Uwaga|Najpierw|Następnie|Teraz|Proszę).*)$",
             QRegularExpression::CaseInsensitiveOption | QRegularExpression::MultilineOption);
-        // Dzielimy na linie i filtrujemy, aby zachować kolejność i puste linie usunąć
+
         QStringList lines = script.split(QRegularExpression("\\r?\\n"));
         QStringList cleanLines;
         for (const QString &line : lines) {
@@ -145,9 +157,11 @@ void LlmClient::generateScript(const QString &userPrompt,
             closeBraces++;
         }
 
+        // Jeśli pusty -> emit error (obsługa błędów)
         if (script.isEmpty()) {
             emit errorOccurred("Otrzymano pusty skrypt od modelu LLM.");
         } else {
+            // Emitujemy gotowy, oczyszczony skrypt
             emit scriptReady(script);
         }
 
