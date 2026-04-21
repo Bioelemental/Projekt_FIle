@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detectos_0',['detectOS',['../class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d',1,'ScriptRunner']]]
+  ['1_20instalacja_20ollama_0',['1. Instalacja Ollama',['../dir_6b9ebc8331fa7aed5123955532732e16.html#autotoc_md4',1,'']]]
 ];

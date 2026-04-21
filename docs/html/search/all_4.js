@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['llmclient_0',['LlmClient',['../class_llm_client.html',1,'LlmClient'],['../class_llm_client.html#aeb8c96130963c9ba221668ce8466d580',1,'LlmClient::LlmClient()']]],
-  ['llmclient_2ecpp_1',['llmclient.cpp',['../llmclient_8cpp.html',1,'']]],
-  ['llmclient_2eh_2',['llmclient.h',['../llmclient_8h.html',1,'']]]
+  ['api_5furl_0',['API_URL',['../class_llm_client.html#aaaa906d2b1ffc08195fda0f92d3bc5eb',1,'LlmClient']]],
+  ['autor_1',['Autor',['../dir_6b9ebc8331fa7aed5123955532732e16.html#autotoc_md11',1,'']]]
 ];

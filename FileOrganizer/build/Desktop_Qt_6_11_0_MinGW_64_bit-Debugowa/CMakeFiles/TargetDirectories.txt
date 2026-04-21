@@ -1,9 +1,0 @@
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizer.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizerTests.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/test.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/edit_cache.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/rebuild_cache.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizer_autogen_timestamp_deps.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizer_autogen.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizerTests_autogen_timestamp_deps.dir
-C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/CMakeFiles/FileOrganizerTests_autogen.dir

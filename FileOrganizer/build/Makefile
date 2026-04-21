@@ -56,7 +56,7 @@ RM = D:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer
+CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build

@@ -46,6 +46,9 @@ qt_add_executable(FileOrganizerTests
     llmclient.h
 )
 
+
+set_target_properties(FileOrganizerTests PROPERTIES AUTOMOC ON AUTOUIC ON AUTORCC ON)
+
 target_link_libraries(FileOrganizerTests PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Network

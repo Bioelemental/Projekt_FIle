@@ -6,10 +6,14 @@
 #include <QNetworkReply>
 
 
+/**
+ * @brief Klasa do komunikacji z lokalnym modelem LLM przez REST API.
+ *
+ * @details Wysy³a prompt (system + user) i emituje sygna³y z wynikiem.
+ */
 class LlmClient : public QObject
 {
     Q_OBJECT
-
 public:
     /**
      * @brief Konstruktor
@@ -17,7 +21,16 @@ public:
      */
     explicit LlmClient(QObject *parent = nullptr);
 
-  
+    /**
+     * @brief Wygeneruj skrypt na podstawie promptu.
+     * @param userPrompt polecenie od u¿ytkownika (polski/angielski)
+     * @param folderPath œcie¿ka do folderu docelowego
+     * @param os identyfikator systemu ("Windows" lub "Linux")
+     *
+     * Wynik zostanie dostarczony asynchronicznie:
+     * - @c scriptReady(zawiera skrypt) lub
+     * - @c errorOccurred(z komunikatem b³êdu)
+     */
     void generateScript(const QString &userPrompt,
                         const QString &folderPath,
                         const QString &os);

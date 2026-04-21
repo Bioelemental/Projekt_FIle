@@ -53,7 +53,7 @@ RM = D:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer
+CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build
@@ -110,8 +110,8 @@ CMakeFiles/FileOrganizer.dir/clean:
 # Target rules for target CMakeFiles/FileOrganizerTests.dir
 
 # All Build rule for target.
-CMakeFiles/FileOrganizerTests.dir/all: CMakeFiles/FileOrganizerTests_autogen_timestamp_deps.dir/all
 CMakeFiles/FileOrganizerTests.dir/all: CMakeFiles/FileOrganizerTests_autogen.dir/all
+CMakeFiles/FileOrganizerTests.dir/all: CMakeFiles/FileOrganizerTests_autogen_timestamp_deps.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FileOrganizerTests.dir\build.make CMakeFiles/FileOrganizerTests.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FileOrganizerTests.dir\build.make CMakeFiles/FileOrganizerTests.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles --progress-num=8,9,10,11,12,13 "Built target FileOrganizerTests"

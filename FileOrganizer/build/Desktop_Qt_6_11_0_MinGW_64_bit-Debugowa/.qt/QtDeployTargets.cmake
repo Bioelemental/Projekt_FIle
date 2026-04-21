@@ -1,6 +1,0 @@
-set(__QT_DEPLOY_TARGET_FileOrganizer_FILE C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/FileOrganizer.exe)
-set(__QT_DEPLOY_TARGET_FileOrganizer_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_FileOrganizer_RUNTIME_DLLS C:/Qt/6.11.0/mingw_64/bin/Qt6Widgets.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Network.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Core.dll)
-set(__QT_DEPLOY_TARGET_FileOrganizerTests_FILE C:/Users/wikto/Projekt_FILE_ORGANISER/FileOrganizer/build/Desktop_Qt_6_11_0_MinGW_64_bit-Debugowa/FileOrganizerTests.exe)
-set(__QT_DEPLOY_TARGET_FileOrganizerTests_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_FileOrganizerTests_RUNTIME_DLLS C:/Qt/6.11.0/mingw_64/bin/Qt6Widgets.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Network.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Test.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Gui.dll;C:/Qt/6.11.0/mingw_64/bin/Qt6Core.dll)

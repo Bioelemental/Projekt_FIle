@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../../Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/llmclient.h"
+#include "../../../llmclient.h"
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 

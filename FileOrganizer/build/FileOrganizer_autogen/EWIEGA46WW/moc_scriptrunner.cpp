@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../../Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.h"
+#include "../../../scriptrunner.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

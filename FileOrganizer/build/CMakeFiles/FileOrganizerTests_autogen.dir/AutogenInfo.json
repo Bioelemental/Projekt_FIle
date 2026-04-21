@@ -3,11 +3,11 @@
 	"BUILD_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizerTests_autogen",
 	"CMAKE_BINARY_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build",
 	"CMAKE_CURRENT_BINARY_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer",
 	"CMAKE_EXECUTABLE" : "D:/Qt/Tools/CMake_64/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/CMakeLists.txt",
+		"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/CMakeLists.txt",
 		"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/.qtcreator/cmake-helper/qtcreator-project.cmake",
 		"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/.qtcreator/cmake-helper/package-manager.cmake",
 		"D:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake",
@@ -395,16 +395,6 @@
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Test/Qt6TestAdditionalTargetInfo.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Test/QtTestProperties.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Test/Qt6TestVersionlessAliasTargets.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake",
-		"D:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargetsPrecheck.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-relwithdebinfo.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake",
-		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
@@ -452,20 +442,20 @@
 		"D:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer",
+	"CMAKE_SOURCE_DIR" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer",
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build/FileOrganizerTests_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "FileOrganizerTests_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/llmclient.h",
+			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/llmclient.h",
 			"MU",
 			"EWIEGA46WW/moc_llmclient.cpp",
 			null
 		],
 		[
-			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.h",
+			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.h",
 			"MU",
 			"EWIEGA46WW/moc_scriptrunner.cpp",
 			null
@@ -477,13 +467,12 @@
 	"MOC_DEFINITIONS" : 
 	[
 		"MINGW_HAS_SECURE_API=1",
-		"QT_CONCURRENT_LIB",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NETWORK_LIB",
 		"QT_QML_DEBUG",
 		"QT_TESTCASE_BUILDDIR=\"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/build\"",
-		"QT_TESTCASE_SOURCEDIR=\"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer\"",
+		"QT_TESTCASE_SOURCEDIR=\"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer\"",
 		"QT_TESTLIB_LIB",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
@@ -509,7 +498,6 @@
 		"D:/Qt/6.11.0/mingw_64/include/QtGui",
 		"D:/Qt/6.11.0/mingw_64/include/QtNetwork",
 		"D:/Qt/6.11.0/mingw_64/include/QtTest",
-		"D:/Qt/6.11.0/mingw_64/include/QtConcurrent",
 		"D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++",
 		"D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32",
 		"D:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward",
@@ -555,17 +543,17 @@
 	"SOURCES" : 
 	[
 		[
-			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/llmclient.cpp",
+			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/llmclient.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.cpp",
+			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/tests/test_main.cpp",
+			"C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/tests/test_main.cpp",
 			"MU",
 			null
 		]

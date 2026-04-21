@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">Inteligentny Organizator Plików<span id="projectnumber">&#160;1.0</span>
    </div>
-   <div id="projectbrief">Aplikacja do organizacji plików z użyciem lokalnego modelu LLM</div>
+   <div id="projectbrief">Aplikacja do organizacji plików z lokalnym LLM (Ollama)</div>
   </td>
  </tr>
  </tbody>
@@ -113,23 +113,24 @@ $(function(){initNavTree('scriptrunner_8h_source.html','',''); });
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">   21</a></span>    <span class="keywordtype">void</span> <a class="code hl_signal" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">errorOccurred</a>(<span class="keyword">const</span> QString &amp;error);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    QProcess *process;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_script_runner.html#aac619dbbaebd2e7cb0d3b68aa142b1a4">   24</a></span>    QProcess *<a class="code hl_variable" href="class_script_runner.html#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
 </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif </span><span class="comment">// SCRIPTRUNNER_H</span></div>
-<div class="ttc" id="aclass_script_runner_html_a12ca3c44dddb55eb98248b59eb43223d"><div class="ttname"><a href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a></div><div class="ttdeci">static QString detectOS()</div><div class="ttdoc">Wykrywa system operacyjny.</div><div class="ttdef"><b>Definition</b> scriptrunner.cpp:17</div></div>
-<div class="ttc" id="aclass_script_runner_html_a611bb4bc3dc89ab90516d94d117ef4d7"><div class="ttname"><a href="class_script_runner.html#a611bb4bc3dc89ab90516d94d117ef4d7">ScriptRunner::runScript</a></div><div class="ttdeci">void runScript(const QString &amp;scriptContent)</div><div class="ttdoc">Uruchamia wygenerowany skrypt systemowy.</div><div class="ttdef"><b>Definition</b> scriptrunner.cpp:29</div></div>
+<div class="ttc" id="aclass_script_runner_html_a12ca3c44dddb55eb98248b59eb43223d"><div class="ttname"><a href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a></div><div class="ttdeci">static QString detectOS()</div><div class="ttdoc">Wykrywa system operacyjny.</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00019">scriptrunner.cpp:19</a></div></div>
+<div class="ttc" id="aclass_script_runner_html_a611bb4bc3dc89ab90516d94d117ef4d7"><div class="ttname"><a href="class_script_runner.html#a611bb4bc3dc89ab90516d94d117ef4d7">ScriptRunner::runScript</a></div><div class="ttdeci">void runScript(const QString &amp;scriptContent)</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00029">scriptrunner.cpp:29</a></div></div>
 <div class="ttc" id="aclass_script_runner_html_a6764d21bb5569397e3e410a83353c3f0"><div class="ttname"><a href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
 <div class="ttc" id="aclass_script_runner_html_a6c2af2e0aed6c7ee9aa8f69e6dedc0d3"><div class="ttname"><a href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a></div><div class="ttdeci">void finished(const QString &amp;output)</div></div>
-<div class="ttc" id="aclass_script_runner_html_a6fca5691724636bff1304833872638b7"><div class="ttname"><a href="class_script_runner.html#a6fca5691724636bff1304833872638b7">ScriptRunner::ScriptRunner</a></div><div class="ttdeci">ScriptRunner(QObject *parent=nullptr)</div><div class="ttdoc">Konstruktor ScriptRunner.</div><div class="ttdef"><b>Definition</b> scriptrunner.cpp:9</div></div>
+<div class="ttc" id="aclass_script_runner_html_a6fca5691724636bff1304833872638b7"><div class="ttname"><a href="class_script_runner.html#a6fca5691724636bff1304833872638b7">ScriptRunner::ScriptRunner</a></div><div class="ttdeci">ScriptRunner(QObject *parent=nullptr)</div><div class="ttdoc">Konstruktor ScriptRunner.</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00011">scriptrunner.cpp:11</a></div></div>
+<div class="ttc" id="aclass_script_runner_html_aac619dbbaebd2e7cb0d3b68aa142b1a4"><div class="ttname"><a href="class_script_runner.html#aac619dbbaebd2e7cb0d3b68aa142b1a4">ScriptRunner::process</a></div><div class="ttdeci">QProcess * process</div><div class="ttdef"><b>Definition</b> <a href="#l00024">scriptrunner.h:24</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="scriptrunner_8h.html">scriptrunner.h</a></li>
+    <li class="navelem"><a href="dir_e6bb53534ac0e427887cf7a94c0c004e.html">C:</a></li><li class="navelem"><a href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a href="dir_bba3933a0f242fa87dc08a91bb7013bb.html">vKlaudynka</a></li><li class="navelem"><a href="dir_73980c9a5bddc7346a259ef0fb4648b4.html">Desktop</a></li><li class="navelem"><a href="dir_890d3332d3bf2076b2ededbf6522e86b.html">jpo</a></li><li class="navelem"><a href="dir_059549f78be86633d5b29265fca29997.html">Projekt_FILE_ORGANISER</a></li><li class="navelem"><a href="dir_6b9ebc8331fa7aed5123955532732e16.html">Projekt_FILE_ORGANISER</a></li><li class="navelem"><a href="dir_5c8256c5c02a313ae75afdafc829ba73.html">FileOrganizer</a></li><li class="navelem"><a href="scriptrunner_8h.html">scriptrunner.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>

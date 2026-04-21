@@ -1,3 +1,0 @@
-C:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f CMakeFiles\FileOrganizerTests.dir/objects.a
-C:\Qt\Tools\mingw1310_64\bin\ar.exe qc CMakeFiles\FileOrganizerTests.dir/objects.a @CMakeFiles\FileOrganizerTests.dir\objects1.rsp
-C:\Qt\Tools\mingw1310_64\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\FileOrganizerTests.dir/objects.a -Wl,--no-whole-archive -o FileOrganizerTests.exe -Wl,--out-implib,libFileOrganizerTests.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\FileOrganizerTests.dir\linkLibs.rsp

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['erroroccurred_0',['errorOccurred',['../class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595',1,'LlmClient::errorOccurred()'],['../class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0',1,'ScriptRunner::errorOccurred()']]]
+  ['2_20pobierz_20model_20bielik_0',['2. Pobierz model Bielik',['../dir_6b9ebc8331fa7aed5123955532732e16.html#autotoc_md5',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../class_main_window.html',1,'']]]
+  ['llmclient_0',['LlmClient',['../class_llm_client.html',1,'']]]
 ];

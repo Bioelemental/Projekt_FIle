@@ -295,7 +295,7 @@ FileOrganizer_BINARY_DIR:STATIC=C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORG
 FileOrganizer_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-FileOrganizer_SOURCE_DIR:STATIC=C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer
+FileOrganizer_SOURCE_DIR:STATIC=C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer
 
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
@@ -321,9 +321,6 @@ QT_ENABLE_QML_DEBUG:BOOL=ON
 
 //No help, variable specified on the command line.
 QT_QMAKE_EXECUTABLE:FILEPATH=D:/Qt/6.11.0/mingw_64/bin/qmake.exe
-
-//The directory containing a CMake configuration file for Qt6Concurrent.
-Qt6Concurrent_DIR:PATH=D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6Concurrent
 
 //The directory containing a CMake configuration file for Qt6CoreTools.
 Qt6CoreTools_DIR:PATH=D:/Qt/6.11.0/mingw_64/lib/cmake/Qt6CoreTools
@@ -437,7 +434,7 @@ CMAKE_GENERATOR_TOOLSET:INTERNAL=
 CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer
+CMAKE_HOME_DIRECTORY:INTERNAL=C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

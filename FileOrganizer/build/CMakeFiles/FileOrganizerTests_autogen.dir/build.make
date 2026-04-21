@@ -52,7 +52,7 @@ RM = D:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer
+CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build
@@ -88,6 +88,6 @@ CMakeFiles/FileOrganizerTests_autogen.dir/clean:
 .PHONY : CMakeFiles/FileOrganizerTests_autogen.dir/clean
 
 CMakeFiles/FileOrganizerTests_autogen.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles\FileOrganizerTests_autogen.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles\FileOrganizerTests_autogen.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/FileOrganizerTests_autogen.dir/depend
 

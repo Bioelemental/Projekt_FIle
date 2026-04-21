@@ -1,0 +1,105 @@
+# Doxyfile for "Inteligentny Organizator Plików"
+# Umieść ten plik w katalogu root repozytorium: Projekt_FILE_ORGANISER/Doxyfile
+# Uruchom: doxygen Doxyfile
+
+# Project
+PROJECT_NAME           = "Inteligentny Organizator Plików"
+PROJECT_BRIEF          = "Aplikacja do organizacji plików z lokalnym LLM (Ollama)"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+
+# Build
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_MAN           = NO
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+
+# Input
+INPUT                  = FileOrganizer README.md requirements.txt
+RECURSIVE              = YES
+FILE_PATTERNS          = *.cpp *.h *.md *.txt
+EXCLUDE                = build \
+                         */build/* \
+                         FileOrganizer_autogen \
+                         */FileOrganizer_autogen \
+                         */moc_*.cpp \
+                         */moc_*.h \
+                         */moc_predefs.h \
+                         */.qt/* \
+                         docs
+
+# Exclude symbols / patterns (usuwa generowane symbole Qt i makra)
+EXCLUDE_SYMBOLS        = qt_meta_tag_* \
+                         QT_WARNING_PUSH \
+                         QT_WARNING_POP \
+                         QT_WARNING_DISABLE_DEPRECATED \
+                         NQT_WARNING_DISABLE_DEPRECATED
+
+# Preprocessing / macros
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SKIP_FUNCTION_MACROS   = YES
+
+# Definiuj problematyczne makra jako puste, żeby nie pojawiały się w dokumentacji
+PREDEFINED             = NQT_WARNING_DISABLE_DEPRECATED= \
+                         QT_WARNING_PUSH= \
+                         QT_WARNING_POP= \
+                         QT_WARNING_DISABLE_DEPRECATED= \
+                         QT_NO_DEPRECATED= \
+                         QT_DEPRECATED_WARNINGS=0
+
+# Extraction
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_ANON_NSPACES   = NO
+
+# Output options
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LOGFILE           = docs/doxygen_warnings.log
+
+# Source browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_FROM_PATH        = Projekt_FILE_ORGANISER
+FULL_PATH_NAMES        = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+GENERATE_TREEVIEW      = YES
+
+# HTML options
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_TIMESTAMP         = YES
+DISABLE_INDEX          = NO
+
+# Dot / graphs (Graphviz) - optional, set HAVE_DOT = NO if graphviz not installed
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+DOT_PATH               =
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
+
+# Encoding
+INPUT_ENCODING         = UTF-8
+SOURCE_ENCODING        = UTF-8
+
+# Performance / parsing tweaks
+MAX_INITIALIZER_LINES  = 20
+TAB_SIZE               = 4
+
+# Optional: dodatkowe wzorce wykluczeń (regex)
+EXCLUDE_PATTERNS       = */build/* \
+                         */FileOrganizer_autogen/* \
+                         */.qt/*
+
+# Finish
+GENERATE_TAGFILE       =

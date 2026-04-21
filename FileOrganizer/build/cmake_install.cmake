@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer
+# Install script for directory: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

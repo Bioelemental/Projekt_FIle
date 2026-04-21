@@ -1,6 +1,6 @@
 CMakeFiles/FileOrganizerTests.dir/scriptrunner.cpp.obj: \
- C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.cpp \
- C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.h \
+ C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.cpp \
+ C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QObject \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qobject.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qobjectdefs.h \
@@ -391,4 +391,11 @@ CMakeFiles/FileOrganizerTests.dir/scriptrunner.cpp.obj: \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qfileinfo.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/qtimezone.h \
  D:/Qt/6.11.0/mingw_64/include/QtCore/QTemporaryFile \
- D:/Qt/6.11.0/mingw_64/include/QtCore/qtemporaryfile.h
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qtemporaryfile.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/QTimer \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qtimer.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qbasictimer.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qabstracteventdispatcher.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qeventloop.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/qdeadlinetimer.h \
+ D:/Qt/6.11.0/mingw_64/include/QtCore/QTextStream

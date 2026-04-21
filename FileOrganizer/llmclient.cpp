@@ -154,3 +154,5 @@ void LlmClient::generateScript(const QString &userPrompt,
         reply->deleteLater();
     });
 }
+
+#include "llmclient.moc"

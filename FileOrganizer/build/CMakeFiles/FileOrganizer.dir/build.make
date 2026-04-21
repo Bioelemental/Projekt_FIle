@@ -52,7 +52,7 @@ RM = D:\Qt\Tools\CMake_64\bin\cmake.exe -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer
+CMAKE_SOURCE_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build
@@ -92,63 +92,63 @@ CMakeFiles/FileOrganizer.dir/FileOrganizer_autogen/mocs_compilation.cpp.s: cmake
 
 CMakeFiles/FileOrganizer.dir/main.cpp.obj: CMakeFiles/FileOrganizer.dir/flags.make
 CMakeFiles/FileOrganizer.dir/main.cpp.obj: CMakeFiles/FileOrganizer.dir/includes_CXX.rsp
-CMakeFiles/FileOrganizer.dir/main.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/main.cpp
+CMakeFiles/FileOrganizer.dir/main.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/main.cpp
 CMakeFiles/FileOrganizer.dir/main.cpp.obj: CMakeFiles/FileOrganizer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FileOrganizer.dir/main.cpp.obj"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/main.cpp.obj -MF CMakeFiles\FileOrganizer.dir\main.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\main.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\main.cpp
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/main.cpp.obj -MF CMakeFiles\FileOrganizer.dir\main.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\main.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\main.cpp
 
 CMakeFiles/FileOrganizer.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileOrganizer.dir/main.cpp.i"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\main.cpp > CMakeFiles\FileOrganizer.dir\main.cpp.i
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\main.cpp > CMakeFiles\FileOrganizer.dir\main.cpp.i
 
 CMakeFiles/FileOrganizer.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileOrganizer.dir/main.cpp.s"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\main.cpp -o CMakeFiles\FileOrganizer.dir\main.cpp.s
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\main.cpp -o CMakeFiles\FileOrganizer.dir\main.cpp.s
 
 CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj: CMakeFiles/FileOrganizer.dir/flags.make
 CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj: CMakeFiles/FileOrganizer.dir/includes_CXX.rsp
-CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/mainwindow.cpp
+CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/mainwindow.cpp
 CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj: CMakeFiles/FileOrganizer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj -MF CMakeFiles\FileOrganizer.dir\mainwindow.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\mainwindow.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\mainwindow.cpp
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/mainwindow.cpp.obj -MF CMakeFiles\FileOrganizer.dir\mainwindow.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\mainwindow.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\mainwindow.cpp
 
 CMakeFiles/FileOrganizer.dir/mainwindow.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileOrganizer.dir/mainwindow.cpp.i"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\mainwindow.cpp > CMakeFiles\FileOrganizer.dir\mainwindow.cpp.i
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\mainwindow.cpp > CMakeFiles\FileOrganizer.dir\mainwindow.cpp.i
 
 CMakeFiles/FileOrganizer.dir/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileOrganizer.dir/mainwindow.cpp.s"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\mainwindow.cpp -o CMakeFiles\FileOrganizer.dir\mainwindow.cpp.s
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\mainwindow.cpp -o CMakeFiles\FileOrganizer.dir\mainwindow.cpp.s
 
 CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj: CMakeFiles/FileOrganizer.dir/flags.make
 CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj: CMakeFiles/FileOrganizer.dir/includes_CXX.rsp
-CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/llmclient.cpp
+CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/llmclient.cpp
 CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj: CMakeFiles/FileOrganizer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj -MF CMakeFiles\FileOrganizer.dir\llmclient.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\llmclient.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\llmclient.cpp
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/llmclient.cpp.obj -MF CMakeFiles\FileOrganizer.dir\llmclient.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\llmclient.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\llmclient.cpp
 
 CMakeFiles/FileOrganizer.dir/llmclient.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileOrganizer.dir/llmclient.cpp.i"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\llmclient.cpp > CMakeFiles\FileOrganizer.dir\llmclient.cpp.i
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\llmclient.cpp > CMakeFiles\FileOrganizer.dir\llmclient.cpp.i
 
 CMakeFiles/FileOrganizer.dir/llmclient.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileOrganizer.dir/llmclient.cpp.s"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\llmclient.cpp -o CMakeFiles\FileOrganizer.dir\llmclient.cpp.s
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\llmclient.cpp -o CMakeFiles\FileOrganizer.dir\llmclient.cpp.s
 
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: CMakeFiles/FileOrganizer.dir/flags.make
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: CMakeFiles/FileOrganizer.dir/includes_CXX.rsp
-CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FIle-main/Projekt_FIle-main/FileOrganizer/scriptrunner.cpp
+CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: C:/Users/vKlaudynka/Desktop/jpo/Projekt_FILE_ORGANISER/Projekt_FILE_ORGANISER/FileOrganizer/scriptrunner.cpp
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj: CMakeFiles/FileOrganizer.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj -MF CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.cpp
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj -MF CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.obj.d -o CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.obj -c C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.cpp
 
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.i"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.cpp > CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.i
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.cpp > CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.i
 
 CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.s"
-	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer\scriptrunner.cpp -o CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.s
+	D:\Qt\Tools\mingw1310_64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\scriptrunner.cpp -o CMakeFiles\FileOrganizer.dir\scriptrunner.cpp.s
 
 # Object files for target FileOrganizer
 FileOrganizer_OBJECTS = \
@@ -169,7 +169,6 @@ FileOrganizer.exe: CMakeFiles/FileOrganizer.dir/scriptrunner.cpp.obj
 FileOrganizer.exe: CMakeFiles/FileOrganizer.dir/build.make
 FileOrganizer.exe: D:/Qt/6.11.0/mingw_64/lib/libQt6Widgets.a
 FileOrganizer.exe: D:/Qt/6.11.0/mingw_64/lib/libQt6Network.a
-FileOrganizer.exe: D:/Qt/6.11.0/mingw_64/lib/libQt6Concurrent.a
 FileOrganizer.exe: D:/Qt/6.11.0/mingw_64/lib/libQt6Gui.a
 FileOrganizer.exe: D:/Qt/6.11.0/mingw_64/lib/libQt6Core.a
 FileOrganizer.exe: CMakeFiles/FileOrganizer.dir/linkLibs.rsp
@@ -187,6 +186,6 @@ CMakeFiles/FileOrganizer.dir/clean:
 .PHONY : CMakeFiles/FileOrganizer.dir/clean
 
 CMakeFiles/FileOrganizer.dir/depend: FileOrganizer_autogen/timestamp
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FIle-main\Projekt_FIle-main\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles\FileOrganizer.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build C:\Users\vKlaudynka\Desktop\jpo\Projekt_FILE_ORGANISER\Projekt_FILE_ORGANISER\FileOrganizer\build\CMakeFiles\FileOrganizer.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/FileOrganizer.dir/depend
 

@@ -28,7 +28,7 @@
   <td id="projectalign">
    <div id="projectname">Inteligentny Organizator Plików<span id="projectnumber">&#160;1.0</span>
    </div>
-   <div id="projectbrief">Aplikacja do organizacji plików z użyciem lokalnego modelu LLM</div>
+   <div id="projectbrief">Aplikacja do organizacji plików z lokalnym LLM (Ollama)</div>
   </td>
  </tr>
  </tbody>
@@ -100,9 +100,13 @@ $(function(){initNavTree('class_llm_client.html','','class_llm_client-members');
 <div class="dynheader">
 Inheritance diagram for LlmClient:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_llm_client.png" alt=""/>
- </div></div>
+<div class="center"><!-- SVG 0 --></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for LlmClient:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 1 --></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-signals" class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
@@ -112,12 +116,21 @@ Signals</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb8c96130963c9ba221668ce8466d580" id="r_aeb8c96130963c9ba221668ce8466d580"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aeb8c96130963c9ba221668ce8466d580">LlmClient</a> (QObject *parent=nullptr)</td></tr>
-<tr class="memdesc:aeb8c96130963c9ba221668ce8466d580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor <a class="el" href="class_llm_client.html" title="Klasa do komunikacji z lokalnym modelem LLM przez REST API.">LlmClient</a>.  <br /></td></tr>
+<tr class="memdesc:aeb8c96130963c9ba221668ce8466d580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor.  <br /></td></tr>
 <tr class="memitem:ad1a893664320d80bcbde59706a90d435" id="r_ad1a893664320d80bcbde59706a90d435"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad1a893664320d80bcbde59706a90d435">generateScript</a> (const QString &amp;userPrompt, const QString &amp;folderPath, const QString &amp;os)</td></tr>
-<tr class="memdesc:ad1a893664320d80bcbde59706a90d435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wysyła zapytanie do Ollama i odbiera wygenerowany skrypt.  <br /></td></tr>
+<tr class="memdesc:ad1a893664320d80bcbde59706a90d435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wygeneruj skrypt na podstawie promptu.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a02e15f6c13b845e9a200176e1df8a912" id="r_a02e15f6c13b845e9a200176e1df8a912"><td class="memItemLeft">QNetworkAccessManager *&#160;</td><td class="memItemRight"><a class="el" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a></td></tr>
+<tr class="memitem:aaaa906d2b1ffc08195fda0f92d3bc5eb" id="r_aaaa906d2b1ffc08195fda0f92d3bc5eb"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">API_URL</a> = &quot;http://localhost:11434/api/generate&quot;</td></tr>
+<tr class="memitem:a4671b583f8f9e02869806b1e7315fea5" id="r_a4671b583f8f9e02869806b1e7315fea5"><td class="memItemLeft">const QString&#160;</td><td class="memItemRight"><a class="el" href="#a4671b583f8f9e02869806b1e7315fea5">MODEL</a> = &quot;SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M&quot;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa do komunikacji z lokalnym modelem LLM przez REST API. </p>
+<p>Wysy�a prompt (system + user) i emituje sygna�y z wynikiem. </p>
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00014">14</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aeb8c96130963c9ba221668ce8466d580" name="aeb8c96130963c9ba221668ce8466d580"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb8c96130963c9ba221668ce8466d580">&#9670;&#160;</a></span>LlmClient()</h2>
@@ -142,7 +155,23 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Konstruktor <a class="el" href="class_llm_client.html" title="Klasa do komunikacji z lokalnym modelem LLM przez REST API.">LlmClient</a>. </p>
+<p>Konstruktor. </p>
+<p>Konstruktor <a class="el" href="class_llm_client.html" title="Klasa do komunikacji z lokalnym modelem LLM przez REST API.">LlmClient</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>rodzic QObject </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8cpp_source.html#l00013">13</a> of file <a class="el" href="llmclient_8cpp_source.html">llmclient.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>                                    : QObject(parent)</div>
+<div class="line"><span class="lineno">   14</span>{</div>
+<div class="line"><span class="lineno">   15</span>    <a class="code hl_variable" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a> = <span class="keyword">new</span> QNetworkAccessManager(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   16</span>}</div>
+<div class="ttc" id="aclass_llm_client_html_a02e15f6c13b845e9a200176e1df8a912"><div class="ttname"><a href="#a02e15f6c13b845e9a200176e1df8a912">LlmClient::manager</a></div><div class="ttdeci">QNetworkAccessManager * manager</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00046">llmclient.h:46</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00046">manager</a>.</p>
 
 </div>
 </div>
@@ -169,6 +198,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Emitted on error with human-readable message. </p>
+
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, <a class="el" href="test__main_8cpp_source.html#l00112">FileOrganizerTests::test_llmClient_emitsError_whenNoServer()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 2 --></div>
+</div>
 
 </div>
 </div>
@@ -196,7 +233,174 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Wysyła zapytanie do Ollama i odbiera wygenerowany skrypt. </p>
+<p>Wygeneruj skrypt na podstawie promptu. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">userPrompt</td><td>polecenie od u�ytkownika (polski/angielski) </td></tr>
+    <tr><td class="paramname">folderPath</td><td>�cie�ka do folderu docelowego </td></tr>
+    <tr><td class="paramname">os</td><td>identyfikator systemu ("Windows" lub "Linux")</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Wynik zostanie dostarczony asynchronicznie:</p><ul>
+<li><code>scriptReady(zawiera skrypt)</code> lub</li>
+<li><code>errorOccurred</code>(z komunikatem b��du) </li>
+</ul>
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8cpp_source.html#l00019">19</a> of file <a class="el" href="llmclient_8cpp_source.html">llmclient.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
+<div class="line"><span class="lineno">   23</span>    QString systemPrompt;</div>
+<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span> (os == <span class="stringliteral">&quot;Windows&quot;</span>) {</div>
+<div class="line"><span class="lineno">   25</span>        systemPrompt = <span class="stringliteral">&quot;Jesteś generatorem skryptów PowerShell. &quot;</span></div>
+<div class="line"><span class="lineno">   26</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod PowerShell. &quot;</span></div>
+<div class="line"><span class="lineno">   27</span>                       <span class="stringliteral">&quot;Używaj TYLKO Move-Item do przenoszenia plików. &quot;</span></div>
+<div class="line"><span class="lineno">   28</span>                       <span class="stringliteral">&quot;NIGDY nie używaj Remove-Item. &quot;</span></div>
+<div class="line"><span class="lineno">   29</span>                       <span class="stringliteral">&quot;Aby przenieść plik DO folderu użyj: &quot;</span></div>
+<div class="line"><span class="lineno">   30</span>                       <span class="stringliteral">&quot;Move-Item -Path $file -Destination $folderPath &quot;</span></div>
+<div class="line"><span class="lineno">   31</span>                       <span class="stringliteral">&quot;gdzie $folderPath to FOLDER nie pełna ścieżka pliku. &quot;</span></div>
+<div class="line"><span class="lineno">   32</span>                       <span class="stringliteral">&quot;Aby filtrować wiele rozszerzeń ZAWSZE używaj &quot;</span></div>
+<div class="line"><span class="lineno">   33</span>                       <span class="stringliteral">&quot;osobnego Get-ChildItem dla każdego rozszerzenia osobno. &quot;</span></div>
+<div class="line"><span class="lineno">   34</span>                       <span class="stringliteral">&quot;Aby utworzyć folder: &quot;</span></div>
+<div class="line"><span class="lineno">   35</span>                       <span class="stringliteral">&quot;New-Item -ItemType Directory -Force -Path $folder. &quot;</span></div>
+<div class="line"><span class="lineno">   36</span>                       <span class="stringliteral">&quot;Po każdym przeniesieniu: Write-Host &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
+<div class="line"><span class="lineno">   37</span>                       <span class="stringliteral">&quot;Nie dodawaj opisów ani komentarzy.&quot;</span>;</div>
+<div class="line"><span class="lineno">   38</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   39</span>        systemPrompt = <span class="stringliteral">&quot;Jesteś generatorem skryptów Bash. &quot;</span></div>
+<div class="line"><span class="lineno">   40</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod Bash bez opisów, bez komentarzy. &quot;</span></div>
+<div class="line"><span class="lineno">   41</span>                       <span class="stringliteral">&quot;Używaj TYLKO mv do przenoszenia plików. &quot;</span></div>
+<div class="line"><span class="lineno">   42</span>                       <span class="stringliteral">&quot;NIGDY nie używaj rm -rf. &quot;</span></div>
+<div class="line"><span class="lineno">   43</span>                       <span class="stringliteral">&quot;Aby utworzyć folder użyj: mkdir -p. &quot;</span></div>
+<div class="line"><span class="lineno">   44</span>                       <span class="stringliteral">&quot;Po każdym przeniesieniu użyj: echo &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
+<div class="line"><span class="lineno">   45</span>                       <span class="stringliteral">&quot;NIE pisz słowa MOVED bez echo. &quot;</span></div>
+<div class="line"><span class="lineno">   46</span>                       <span class="stringliteral">&quot;Nie dodawaj żadnych opisów ani komentarzy poza kodem.&quot;</span>;</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>    QString fullPrompt = QString(<span class="stringliteral">&quot;Folder: %1\nPolecenie: %2&quot;</span>)</div>
+<div class="line"><span class="lineno">   50</span>                             .arg(folderPath, userPrompt);</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>    QJsonObject json;</div>
+<div class="line"><span class="lineno">   53</span>    json[<span class="stringliteral">&quot;model&quot;</span>] = <a class="code hl_variable" href="#a4671b583f8f9e02869806b1e7315fea5">MODEL</a>;</div>
+<div class="line"><span class="lineno">   54</span>    json[<span class="stringliteral">&quot;system&quot;</span>] = systemPrompt;</div>
+<div class="line"><span class="lineno">   55</span>    json[<span class="stringliteral">&quot;prompt&quot;</span>] = fullPrompt;</div>
+<div class="line"><span class="lineno">   56</span>    json[<span class="stringliteral">&quot;stream&quot;</span>] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   57</span>    json[<span class="stringliteral">&quot;options&quot;</span>] = QJsonObject{{<span class="stringliteral">&quot;num_predict&quot;</span>, 1024}};</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    <span class="comment">// Pozwól nadpisać URL przez zmienną środowiskową</span></div>
+<div class="line"><span class="lineno">   60</span>    QString apiUrl = QString::fromUtf8(qgetenv(<span class="stringliteral">&quot;OLLAMA_API_URL&quot;</span>));</div>
+<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">if</span> (apiUrl.isEmpty()) apiUrl = <a class="code hl_variable" href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">API_URL</a>;</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>    QUrl url(apiUrl);</div>
+<div class="line"><span class="lineno">   64</span>    QNetworkRequest request(url);</div>
+<div class="line"><span class="lineno">   65</span>    request.setHeader(QNetworkRequest::ContentTypeHeader, <span class="stringliteral">&quot;application/json&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span> </div>
+<div class="line"><span class="lineno">   67</span>    QByteArray data = QJsonDocument(json).toJson();</div>
+<div class="line"><span class="lineno">   68</span>    QNetworkReply *reply = <a class="code hl_variable" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a>-&gt;post(request, data);</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>    <span class="comment">// Timeout dla odpowiedzi sieciowej</span></div>
+<div class="line"><span class="lineno">   71</span>    QTimer *netTimer = <span class="keyword">new</span> QTimer(reply);</div>
+<div class="line"><span class="lineno">   72</span>    netTimer-&gt;setSingleShot(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   73</span>    netTimer-&gt;start(8000);</div>
+<div class="line"><span class="lineno">   74</span>    connect(netTimer, &amp;QTimer::timeout, reply, [reply, <span class="keyword">this</span>]() {</div>
+<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (!reply-&gt;isFinished()) {</div>
+<div class="line"><span class="lineno">   76</span>            reply-&gt;abort();</div>
+<div class="line"><span class="lineno">   77</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(<span class="stringliteral">&quot;Timeout: brak odpowiedzi od serwera LLM (Ollama).&quot;</span>);</div>
+<div class="line"><span class="lineno">   78</span>        }</div>
+<div class="line"><span class="lineno">   79</span>    });</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>    connect(reply, &amp;QNetworkReply::finished, <span class="keyword">this</span>, [<span class="keyword">this</span>, reply]() {</div>
+<div class="line"><span class="lineno">   82</span>        <span class="comment">// Jeśli miał miejsce błąd sieciowy -&gt; zgłoś i posprzątaj</span></div>
+<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">if</span> (reply-&gt;error() != QNetworkReply::NoError) {</div>
+<div class="line"><span class="lineno">   84</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(QString(<span class="stringliteral">&quot;Błąd połączenia z Ollama: %1&quot;</span>)</div>
+<div class="line"><span class="lineno">   85</span>                               .arg(reply-&gt;errorString()));</div>
+<div class="line"><span class="lineno">   86</span>            reply-&gt;deleteLater();</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   88</span>        }</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>        <span class="comment">// Spróbuj sparsować JSON, a jeśli nie - użyj surowego tekstu</span></div>
+<div class="line"><span class="lineno">   91</span>        QByteArray raw = reply-&gt;readAll();</div>
+<div class="line"><span class="lineno">   92</span>        QString script;</div>
+<div class="line"><span class="lineno">   93</span>        QJsonParseError parseError;</div>
+<div class="line"><span class="lineno">   94</span>        QJsonDocument doc = QJsonDocument::fromJson(raw, &amp;parseError);</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">if</span> (!doc.isNull() &amp;&amp; doc.isObject()) {</div>
+<div class="line"><span class="lineno">   96</span>            QJsonObject obj = doc.object();</div>
+<div class="line"><span class="lineno">   97</span>            <span class="comment">// Różne wersje Ollama mogą zwrócić pole &quot;response&quot; lub &quot;text&quot;</span></div>
+<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;response&quot;</span>)) {</div>
+<div class="line"><span class="lineno">   99</span>                script = obj.value(<span class="stringliteral">&quot;response&quot;</span>).toString();</div>
+<div class="line"><span class="lineno">  100</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;text&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  101</span>                script = obj.value(<span class="stringliteral">&quot;text&quot;</span>).toString();</div>
+<div class="line"><span class="lineno">  102</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  103</span>                <span class="comment">// fallback: całe body jako tekst</span></div>
+<div class="line"><span class="lineno">  104</span>                script = QString::fromUtf8(raw);</div>
+<div class="line"><span class="lineno">  105</span>            }</div>
+<div class="line"><span class="lineno">  106</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  107</span>            script = QString::fromUtf8(raw);</div>
+<div class="line"><span class="lineno">  108</span>        }</div>
+<div class="line"><span class="lineno">  109</span> </div>
+<div class="line"><span class="lineno">  110</span>        <span class="comment">// Usuwanie bloków &lt;think&gt;...&lt;/think&gt; (wielowierszowo)</span></div>
+<div class="line"><span class="lineno">  111</span>        QRegularExpression thinkRe(<span class="stringliteral">&quot;&lt;think&gt;[\\s\\S]*?&lt;/think&gt;&quot;</span>,</div>
+<div class="line"><span class="lineno">  112</span>                                  QRegularExpression::CaseInsensitiveOption);</div>
+<div class="line"><span class="lineno">  113</span>        script.remove(thinkRe);</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>        <span class="comment">// Usuń bloki markdown ```...``` wraz z opcją języka </span></div>
+<div class="line"><span class="lineno">  116</span>        QRegularExpression fenceRe(<span class="stringliteral">&quot;(?s)```[a-zA-Z0-9_-]*\\s*.*?```&quot;</span>,</div>
+<div class="line"><span class="lineno">  117</span>                                   QRegularExpression::CaseInsensitiveOption);</div>
+<div class="line"><span class="lineno">  118</span>        script.remove(fenceRe);</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>        <span class="comment">// Usuń pojedyncze otwierające znaczniki ```powershell lub ```bash</span></div>
+<div class="line"><span class="lineno">  121</span>        QRegularExpression fenceOpenRe(<span class="stringliteral">&quot;(?i)```(?:powershell|bash)?\\s*&quot;</span>);</div>
+<div class="line"><span class="lineno">  122</span>        script.remove(fenceOpenRe);</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>        <span class="comment">// Usuń linie opisowe — angielskie i polskie początki</span></div>
+<div class="line"><span class="lineno">  125</span>        QRegularExpression nonCodeLineRe(</div>
+<div class="line"><span class="lineno">  126</span>            <span class="stringliteral">&quot;^(\\s*(#|//).*|\\s*(First|Next|Now|This|The|Note|Please|Uwaga|Najpierw|Następnie|Teraz|Proszę).*)$&quot;</span>,</div>
+<div class="line"><span class="lineno">  127</span>            QRegularExpression::CaseInsensitiveOption | QRegularExpression::MultilineOption);</div>
+<div class="line"><span class="lineno">  128</span>        <span class="comment">// Dzielimy na linie i filtrujemy, aby zachować kolejność i puste linie usunąć</span></div>
+<div class="line"><span class="lineno">  129</span>        QStringList lines = script.split(QRegularExpression(<span class="stringliteral">&quot;\\r?\\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  130</span>        QStringList cleanLines;</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> QString &amp;line : lines) {</div>
+<div class="line"><span class="lineno">  132</span>            QString trimmed = line.trimmed();</div>
+<div class="line"><span class="lineno">  133</span>            <span class="keywordflow">if</span> (trimmed.isEmpty()) <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">if</span> (trimmed.startsWith(<span class="charliteral">&#39;#&#39;</span>) || trimmed.startsWith(<span class="stringliteral">&quot;//&quot;</span>)) <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">if</span> (nonCodeLineRe.match(line).hasMatch()) <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  136</span>            cleanLines.append(line);</div>
+<div class="line"><span class="lineno">  137</span>        }</div>
+<div class="line"><span class="lineno">  138</span>        script = cleanLines.join(<span class="stringliteral">&quot;\n&quot;</span>).trimmed();</div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>        <span class="comment">// Napraw brakujące nawiasy klamrowe</span></div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordtype">int</span> openBraces = script.count(<span class="charliteral">&#39;{&#39;</span>);</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordtype">int</span> closeBraces = script.count(<span class="charliteral">&#39;}&#39;</span>);</div>
+<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">while</span> (closeBraces &lt; openBraces) {</div>
+<div class="line"><span class="lineno">  144</span>            script += <span class="stringliteral">&quot;\n}&quot;</span>;</div>
+<div class="line"><span class="lineno">  145</span>            closeBraces++;</div>
+<div class="line"><span class="lineno">  146</span>        }</div>
+<div class="line"><span class="lineno">  147</span> </div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">if</span> (script.isEmpty()) {</div>
+<div class="line"><span class="lineno">  149</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(<span class="stringliteral">&quot;Otrzymano pusty skrypt od modelu LLM.&quot;</span>);</div>
+<div class="line"><span class="lineno">  150</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  151</span>            emit <a class="code hl_signal" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady</a>(script);</div>
+<div class="line"><span class="lineno">  152</span>        }</div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>        reply-&gt;deleteLater();</div>
+<div class="line"><span class="lineno">  155</span>    });</div>
+<div class="line"><span class="lineno">  156</span>}</div>
+<div class="ttc" id="aclass_llm_client_html_a0522e85ec1c702f2176fd1b8ad359982"><div class="ttname"><a href="#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady</a></div><div class="ttdeci">void scriptReady(const QString &amp;script)</div></div>
+<div class="ttc" id="aclass_llm_client_html_a0b7cad2b762365b8910725da6bd9e595"><div class="ttname"><a href="#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
+<div class="ttc" id="aclass_llm_client_html_a4671b583f8f9e02869806b1e7315fea5"><div class="ttname"><a href="#a4671b583f8f9e02869806b1e7315fea5">LlmClient::MODEL</a></div><div class="ttdeci">const QString MODEL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00048">llmclient.h:48</a></div></div>
+<div class="ttc" id="aclass_llm_client_html_aaaa906d2b1ffc08195fda0f92d3bc5eb"><div class="ttname"><a href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">LlmClient::API_URL</a></div><div class="ttdeci">const QString API_URL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00047">llmclient.h:47</a></div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00047">API_URL</a>, <a class="el" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred()</a>, <a class="el" href="llmclient_8h_source.html#l00046">manager</a>, <a class="el" href="llmclient_8h_source.html#l00048">MODEL</a>, and <a class="el" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="test__main_8cpp_source.html#l00112">FileOrganizerTests::test_llmClient_emitsError_whenNoServer()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 3 --></div>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 4 --></div>
+</div>
 
 </div>
 </div>
@@ -222,12 +426,99 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Emitted when a cleaned script is ready. </p>
+
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="aaaa906d2b1ffc08195fda0f92d3bc5eb" name="aaaa906d2b1ffc08195fda0f92d3bc5eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">&#9670;&#160;</a></span>API_URL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString LlmClient::API_URL = &quot;http://localhost:11434/api/generate&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00047">47</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>.</p>
+
+</div>
+</div>
+<a id="a02e15f6c13b845e9a200176e1df8a912" name="a02e15f6c13b845e9a200176e1df8a912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02e15f6c13b845e9a200176e1df8a912">&#9670;&#160;</a></span>manager</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QNetworkAccessManager* LlmClient::manager</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00046">46</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, and <a class="el" href="llmclient_8cpp_source.html#l00013">LlmClient()</a>.</p>
+
+</div>
+</div>
+<a id="a4671b583f8f9e02869806b1e7315fea5" name="a4671b583f8f9e02869806b1e7315fea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4671b583f8f9e02869806b1e7315fea5">&#9670;&#160;</a></span>MODEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const QString LlmClient::MODEL = &quot;SpeakLeash/bielik-11b-v3.0-instruct:Q4_K_M&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00048">48</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="llmclient_8h_source.html">llmclient.h</a></li>
-<li><a class="el" href="llmclient_8cpp.html">llmclient.cpp</a></li>
+<li><a class="el" href="llmclient_8cpp_source.html">llmclient.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
