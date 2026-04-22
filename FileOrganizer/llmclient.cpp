@@ -23,36 +23,29 @@ void LlmClient::generateScript(const QString &userPrompt,
     // ----------------------------------------------------------
     // Definicja system prompt (kryterium: Definicja system prompt)
     // ----------------------------------------------------------
-    // W zależności od systemu budujemy systemPrompt (PowerShell lub Bash).
-    // To jest centralne miejsce gdzie aplikacja "optymalizuje" prompt
-    // pod zadanie (kryterium: Optymalizacja pod zadanie).
     QString systemPrompt;
     if (os == "Windows") {
-        systemPrompt = "Jesteś generatorem skryptów PowerShell. "
+        systemPrompt = "Jestes generatorem skryptow PowerShell. "
                        "Generuj TYLKO czysty kod PowerShell. "
-                       "Używaj TYLKO Move-Item do przenoszenia plików. "
-                       "NIGDY nie używaj Remove-Item. "
-                       "Aby przenieść plik DO folderu użyj: "
-                       "Move-Item -Path $file -Destination $folderPath "
-                       "gdzie $folderPath to FOLDER nie pełna ścieżka pliku. "
-                       "Aby filtrować wiele rozszerzeń ZAWSZE używaj "
-                       "osobnego Get-ChildItem dla każdego rozszerzenia osobno. "
-                       "Aby utworzyć folder: "
-                       "New-Item -ItemType Directory -Force -Path $folder. "
-                       "Po każdym przeniesieniu: Write-Host 'MOVED: plik -> cel'. "
-                       "Nie dodawaj opisów ani komentarzy.";
+                       "Uzywaj TYLKO Move-Item do przenoszenia plikow. "
+                       "NIGDY nie uzywaj Remove-Item. "
+                       "Aby przeniesc plik DO folderu uzyj: Move-Item -Path $file -Destination $folderPath gdzie $folderPath to FOLDER nie pelna sciezka pliku. "
+                       "Aby filtrowac wiele rozszerzen ZAWSZE uzywaj osobnego Get-ChildItem dla kazdego rozszerzenia osobno. "
+                       "Nie usuwaj rozszerzen z plikow"
+                       "Aby utworzyc folder: New-Item -ItemType Directory -Force -Path $folder. "
+                       "Po kazdym przeniesieniu: Write-Host 'MOVED: plik -> cel'. "
+                       "Nie dodawaj opisow ani komentarzy.";
     } else {
-        systemPrompt = "Jesteś generatorem skryptów Bash. "
-                       "Generuj TYLKO czysty kod Bash bez opisów, bez komentarzy. "
-                       "Używaj TYLKO mv do przenoszenia plików. "
-                       "NIGDY nie używaj rm -rf. "
-                       "Aby utworzyć folder użyj: mkdir -p. "
-                       "Po każdym przeniesieniu użyj: echo 'MOVED: plik -> cel'. "
-                       "NIE pisz słowa MOVED bez echo. "
-                       "Nie dodawaj żadnych opisów ani komentarzy poza kodem.";
+        systemPrompt = "Jestes generatorem skryptow Bash. "
+                       "Generuj TYLKO czysty kod Bash bez opisow, bez komentarzy. "
+                       "Uzywaj TYLKO mv do przenoszenia plikow. "
+                       "NIGDY nie uzywaj rm -rf. "
+                       "Aby utworzyc folder uzyj: mkdir -p. "
+                       "Po kazdym przeniesieniu uzyj: echo 'MOVED: plik -> cel'. "
+                       "NIE pisz slowa MOVED bez echo. "
+                       "Nie dodawaj zadnych opisow ani komentarzy poza kodem.";
     }
 
-    // Tworzymy finalny prompt wysyłany do modelu (kryterium: Definicja user prompt)
     QString fullPrompt = QString("Folder: %1\nPolecenie: %2")
                              .arg(folderPath, userPrompt);
 
@@ -63,93 +56,117 @@ void LlmClient::generateScript(const QString &userPrompt,
     json["stream"] = false;
     json["options"] = QJsonObject{{"num_predict", 1024}};
 
-    // Pozwól nadpisać URL przez zmienną środowiskową (ułatwia testowanie lokalne)
     QString apiUrl = QString::fromUtf8(qgetenv("OLLAMA_API_URL"));
     if (apiUrl.isEmpty()) apiUrl = API_URL;
 
     QUrl url(apiUrl);
     QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json; charset=utf-8");
 
     QByteArray data = QJsonDocument(json).toJson();
     QNetworkReply *reply = manager->post(request, data);
 
-    // ----------------------------------------------------------
-    // Obsługa błędów / brak połączenia (kryterium: Obsługa błędów)
-    // ----------------------------------------------------------
-    // Timeout dla odpowiedzi sieciowej — odporność na brak usługi
-    QTimer *netTimer = new QTimer(reply);
+    /*QTimer *netTimer = new QTimer(reply);
     netTimer->setSingleShot(true);
-    netTimer->start(8000);
+    netTimer->start(180000);
     connect(netTimer, &QTimer::timeout, reply, [reply, this]() {
         if (!reply->isFinished()) {
             reply->abort();
-            emit errorOccurred("Timeout: brak odpowiedzi od serwera LLM (Ollama).");
+            emit errorOccurred("Timeout: brak odpowiedzi od serwera LLM (Ollama) po 180 sekundach.");
         }
-    });
+    });*/
 
     connect(reply, &QNetworkReply::finished, this, [this, reply]() {
-        // Jeśli miał miejsce błąd sieciowy -> zgłoś i posprzątaj
         if (reply->error() != QNetworkReply::NoError) {
-            emit errorOccurred(QString("Błąd połączenia z Ollama: %1")
+            emit errorOccurred(QString("Blad polaczenia z Ollama: %1")
                                .arg(reply->errorString()));
             reply->deleteLater();
             return;
         }
 
         // ----------------------------------------------------------
-        // Parsowanie odpowiedzi i czyszczenie skryptu (kryterium: Generacja skryptu)
+        // Parsowanie odpowiedzi i czyszczenie skryptu
         // ----------------------------------------------------------
         QByteArray raw = reply->readAll();
         QString script;
         QJsonParseError parseError;
         QJsonDocument doc = QJsonDocument::fromJson(raw, &parseError);
+        
         if (!doc.isNull() && doc.isObject()) {
             QJsonObject obj = doc.object();
-            // Różne wersje Ollama mogą zwrócić pole "response" lub "text"
             if (obj.contains("response")) {
                 script = obj.value("response").toString();
             } else if (obj.contains("text")) {
                 script = obj.value("text").toString();
             } else {
-                // fallback: całe body jako tekst
                 script = QString::fromUtf8(raw);
             }
         } else {
             script = QString::fromUtf8(raw);
         }
 
-        // Usuwanie bloków <think>...</think> (wielowierszowo)
-        QRegularExpression thinkRe("<think>[\\s\\S]*?</think>",
-                                  QRegularExpression::CaseInsensitiveOption);
-        script.remove(thinkRe);
+        // ZMIANA: Bezpieczniejsze czyszczenie
+        // 1. Usuń bloki <think>...</think>
+        script.remove(QRegularExpression("<think>[\\s\\S]*?</think>",
+                                  QRegularExpression::CaseInsensitiveOption));
 
-        // Usuń bloki markdown ```...``` wraz z opcją języka 
-        QRegularExpression fenceRe("(?s)```[a-zA-Z0-9_-]*\\s*.*?```",
-                                   QRegularExpression::CaseInsensitiveOption);
-        script.remove(fenceRe);
+        // 2. Usuń bloki markdown ```powershell...``` lub ```bash...```
+        // Wzorzec: ``` opcjonalny język (powershell/bash) dowolny tekst ```
+        script.remove(QRegularExpression("```(?:powershell|bash)?\\s*\\n",
+                                        QRegularExpression::CaseInsensitiveOption));
+        script.remove(QRegularExpression("\\n?```\\s*$",
+                                        QRegularExpression::CaseInsensitiveOption));
+        script.remove(QRegularExpression("^```\\s*",
+                                        QRegularExpression::CaseInsensitiveOption));
 
-        // Usuń pojedyncze otwierające znaczniki ```powershell lub ```bash
-        QRegularExpression fenceOpenRe("(?i)```(?:powershell|bash)?\\s*");
-        script.remove(fenceOpenRe);
-
-        // Usuń linie opisowe — angielskie i polskie początki
-        QRegularExpression nonCodeLineRe(
-            "^(\\s*(#|//).*|\\s*(First|Next|Now|This|The|Note|Please|Uwaga|Najpierw|Następnie|Teraz|Proszę).*)$",
-            QRegularExpression::CaseInsensitiveOption | QRegularExpression::MultilineOption);
-
+        // 3. Usuń tylko linie CAŁKOWICIE opisowe (nie dotykaj kodu)
         QStringList lines = script.split(QRegularExpression("\\r?\\n"));
         QStringList cleanLines;
+        
         for (const QString &line : lines) {
             QString trimmed = line.trimmed();
-            if (trimmed.isEmpty()) continue;
-            if (trimmed.startsWith('#') || trimmed.startsWith("//")) continue;
-            if (nonCodeLineRe.match(line).hasMatch()) continue;
-            cleanLines.append(line);
+            
+            // Pomiń puste linie
+            if (trimmed.isEmpty()) {
+                continue;
+            }
+            
+            // Pomiń tylko linie komentarzy
+            if (trimmed.startsWith('#') && !trimmed.contains("MOVED:")) {
+                continue;
+            }
+            
+            // Pomiń linie zaczynające się od opisowych słów (TYLKO jeśli nie ma znaku $ lub Move-Item)
+            bool isDescriptiveLine = false;
+            QStringList descriptiveStarts = {"First", "Next", "Now", "This", "The", "Note", "Please", 
+                                              "Uwaga", "Najpierw", "Nastepnie", "Teraz", "Prosze",
+                                              "Here", "To", "You", "We"};
+            
+            for (const QString &desc : descriptiveStarts) {
+                if (trimmed.startsWith(desc, Qt::CaseInsensitive) && 
+                    !trimmed.contains("$") && 
+                    !trimmed.contains("Move-Item") &&
+                    !trimmed.contains("Get-ChildItem") &&
+                    !trimmed.contains("New-Item") &&
+                    !trimmed.contains("mkdir") &&
+                    !trimmed.contains("mv") &&
+                    !trimmed.contains("echo")) {
+                    isDescriptiveLine = true;
+                    break;
+                }
+            }
+            
+            if (isDescriptiveLine) {
+                continue;
+            }
+            
+            // Dodaj linię do oczyszczonego skryptu
+            cleanLines.append(line); // Zachowaj oryginalne wcięcia!
         }
+        
         script = cleanLines.join("\n").trimmed();
 
-        // Napraw brakujące nawiasy klamrowe
+        // 4. Napraw brakujące nawiasy klamrowe
         int openBraces = script.count('{');
         int closeBraces = script.count('}');
         while (closeBraces < openBraces) {
@@ -157,11 +174,11 @@ void LlmClient::generateScript(const QString &userPrompt,
             closeBraces++;
         }
 
-        // Jeśli pusty -> emit error (obsługa błędów)
-        if (script.isEmpty()) {
-            emit errorOccurred("Otrzymano pusty skrypt od modelu LLM.");
+        // 5. Sprawdź czy skrypt nie jest pusty
+        if (script.isEmpty() || script.length() < 10) {
+            emit errorOccurred(QString("Otrzymano pusty lub zbyt krotki skrypt od modelu LLM.\n\nSurowa odpowiedz:\n%1")
+                              .arg(QString::fromUtf8(raw).left(500)));
         } else {
-            // Emitujemy gotowy, oczyszczony skrypt
             emit scriptReady(script);
         }
 
