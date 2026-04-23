@@ -32,9 +32,13 @@ void LlmClient::generateScript(const QString &userPrompt,
                        "Aby przeniesc plik DO folderu uzyj: Move-Item -Path $file -Destination $folderPath gdzie $folderPath to FOLDER nie pelna sciezka pliku. "
                        "Aby filtrowac wiele rozszerzen ZAWSZE uzywaj osobnego Get-ChildItem dla kazdego rozszerzenia osobno. "
                        "Nie usuwaj rozszerzen z plikow"
+                       "Sprawdzaj czy folder istnieje przed przeniesieniem plikow jezeli nie to stworz go w $folderPath"
                        "Aby utworzyc folder: New-Item -ItemType Directory -Force -Path $folder. "
                        "Po kazdym przeniesieniu: Write-Host 'MOVED: plik -> cel'. "
                        "Nie dodawaj opisow ani komentarzy.";
+                       "ZAKAZANE: -Filter '*.jpg, *.png' (przecinek w filtrze jest BLEDNY)";
+
+
     } else {
         systemPrompt = "Jestes generatorem skryptow Bash. "
                        "Generuj TYLKO czysty kod Bash bez opisow, bez komentarzy. "
@@ -44,6 +48,7 @@ void LlmClient::generateScript(const QString &userPrompt,
                        "Po kazdym przeniesieniu uzyj: echo 'MOVED: plik -> cel'. "
                        "NIE pisz slowa MOVED bez echo. "
                        "Nie dodawaj zadnych opisow ani komentarzy poza kodem.";
+                       "- Dla folderu A-Z uzyj: for letter in {A..Z}; do mkdir -p \"$sourcePath/$letter\"; done\n";
     }
 
     QString fullPrompt = QString("Folder: %1\nPolecenie: %2")
