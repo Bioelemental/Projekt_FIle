@@ -3,13 +3,7 @@
 #include "../llmclient.h"
 
 /**
- * @brief Testy jednostkowe dla FileOrganizer
- *
- * MAPOWANIE:
- * - Testy dotyczą detekcji OS (ScriptRunner::detectOS) — spełnia wymaganie działanie na Windows/Linux.
- * - Testy LlmClient sprawdzają tworzenie i emisję błędów (odporność na brak usługi).
- * - Testy czyszczenia skryptu odzwierciedlają regexy używane w llmclient.cpp.
- * - Testy są częścią wymagań na ocenę 5.0.
+ * @ Testy jednostkowe dla FileOrganizer
  */
 class FileOrganizerTests : public QObject
 {
@@ -17,7 +11,7 @@ class FileOrganizerTests : public QObject
 
 private slots:
 
-    // ===== TESTY ScriptRunner =====
+    //  TESTY ScriptRunner 
 
     void test_detectOS_notEmpty() {
         QString os = ScriptRunner::detectOS();
@@ -37,7 +31,7 @@ private slots:
 #endif
     }
 
-    // ===== TESTY LlmClient =====
+    //  TESTY LlmClient 
 
     void test_llmClient_creation() {
         LlmClient *client = new LlmClient();

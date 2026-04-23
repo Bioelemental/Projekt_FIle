@@ -128,9 +128,15 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Klasa do komunikacji z lokalnym modelem LLM przez REST API. </p>
-<p>Wysy�a prompt (system + user) i emituje sygna�y z wynikiem. </p>
+<p>Wysy�a prompt (system + user) i emituje sygna�y z wynikiem.</p>
+<p>MAPOWANIE KRYTERI�W:</p><ul>
+<li>Komunikacja z modelem lokalnym (Ollama) przez REST API: implementacja w <span class="tt"><a class="el" href="#ad1a893664320d80bcbde59706a90d435" title="Wygeneruj skrypt na podstawie promptu.">generateScript()</a></span> (<a class="el" href="llmclient_8cpp.html">llmclient.cpp</a>).</li>
+<li>Definicja system prompt oraz user prompt: budowane w <span class="tt"><a class="el" href="#ad1a893664320d80bcbde59706a90d435" title="Wygeneruj skrypt na podstawie promptu.">generateScript()</a></span> (<a class="el" href="llmclient_8cpp.html">llmclient.cpp</a>).</li>
+<li>Dzia�anie bez internetu / obs�uga niedost�pno�ci: timeout i sprawdzanie b��d�w QNetworkReply -&gt; emit <span class="tt"><a class="el" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a></span>.</li>
+<li>Doxygen: komentarze dokumentuj�ce klas� i funkcje (spe�nia wym�g dokumentacji). </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00014">14</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00020">20</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aeb8c96130963c9ba221668ce8466d580" name="aeb8c96130963c9ba221668ce8466d580"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb8c96130963c9ba221668ce8466d580">&#9670;&#160;</a></span>LlmClient()</h2>
@@ -169,9 +175,9 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   14</span>{</div>
 <div class="line"><span class="lineno">   15</span>    <a class="code hl_variable" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a> = <span class="keyword">new</span> QNetworkAccessManager(<span class="keyword">this</span>);</div>
 <div class="line"><span class="lineno">   16</span>}</div>
-<div class="ttc" id="aclass_llm_client_html_a02e15f6c13b845e9a200176e1df8a912"><div class="ttname"><a href="#a02e15f6c13b845e9a200176e1df8a912">LlmClient::manager</a></div><div class="ttdeci">QNetworkAccessManager * manager</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00046">llmclient.h:46</a></div></div>
+<div class="ttc" id="aclass_llm_client_html_a02e15f6c13b845e9a200176e1df8a912"><div class="ttname"><a href="#a02e15f6c13b845e9a200176e1df8a912">LlmClient::manager</a></div><div class="ttdeci">QNetworkAccessManager * manager</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00056">llmclient.h:56</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00046">manager</a>.</p>
+<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00056">manager</a>.</p>
 
 </div>
 </div>
@@ -200,7 +206,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Emitted on error with human-readable message. </p>
 
-<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, <a class="el" href="test__main_8cpp_source.html#l00112">FileOrganizerTests::test_llmClient_emitsError_whenNoServer()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow::MainWindow()</a>, and <a class="el" href="test__main_8cpp_source.html#l00048">FileOrganizerTests::test_llmClient_emitsError_whenNoOllama()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -244,153 +250,193 @@ Here is the caller graph for this function:</div>
 </dl>
 <p>Wynik zostanie dostarczony asynchronicznie:</p><ul>
 <li><code>scriptReady(zawiera skrypt)</code> lub</li>
-<li><code>errorOccurred</code>(z komunikatem b��du) </li>
+<li><code>errorOccurred</code>(z komunikatem b��du)</li>
+</ul>
+<p>Zwr�� uwag�:</p><ul>
+<li>Funkcja wysy�a JSON do lokalnego serwera (Ollama) � patrz <span class="tt"><a class="el" href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">API_URL</a></span> i <span class="tt"><a class="el" href="#a4671b583f8f9e02869806b1e7315fea5">MODEL</a></span>.</li>
+<li>Obs�uga b��d�w i timeout jest implementowana w <a class="el" href="llmclient_8cpp.html">llmclient.cpp</a>. </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="llmclient_8cpp_source.html#l00019">19</a> of file <a class="el" href="llmclient_8cpp_source.html">llmclient.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
-<div class="line"><span class="lineno">   23</span>    QString systemPrompt;</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span> (os == <span class="stringliteral">&quot;Windows&quot;</span>) {</div>
-<div class="line"><span class="lineno">   25</span>        systemPrompt = <span class="stringliteral">&quot;Jesteś generatorem skryptów PowerShell. &quot;</span></div>
-<div class="line"><span class="lineno">   26</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod PowerShell. &quot;</span></div>
-<div class="line"><span class="lineno">   27</span>                       <span class="stringliteral">&quot;Używaj TYLKO Move-Item do przenoszenia plików. &quot;</span></div>
-<div class="line"><span class="lineno">   28</span>                       <span class="stringliteral">&quot;NIGDY nie używaj Remove-Item. &quot;</span></div>
-<div class="line"><span class="lineno">   29</span>                       <span class="stringliteral">&quot;Aby przenieść plik DO folderu użyj: &quot;</span></div>
-<div class="line"><span class="lineno">   30</span>                       <span class="stringliteral">&quot;Move-Item -Path $file -Destination $folderPath &quot;</span></div>
-<div class="line"><span class="lineno">   31</span>                       <span class="stringliteral">&quot;gdzie $folderPath to FOLDER nie pełna ścieżka pliku. &quot;</span></div>
-<div class="line"><span class="lineno">   32</span>                       <span class="stringliteral">&quot;Aby filtrować wiele rozszerzeń ZAWSZE używaj &quot;</span></div>
-<div class="line"><span class="lineno">   33</span>                       <span class="stringliteral">&quot;osobnego Get-ChildItem dla każdego rozszerzenia osobno. &quot;</span></div>
-<div class="line"><span class="lineno">   34</span>                       <span class="stringliteral">&quot;Aby utworzyć folder: &quot;</span></div>
-<div class="line"><span class="lineno">   35</span>                       <span class="stringliteral">&quot;New-Item -ItemType Directory -Force -Path $folder. &quot;</span></div>
-<div class="line"><span class="lineno">   36</span>                       <span class="stringliteral">&quot;Po każdym przeniesieniu: Write-Host &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
-<div class="line"><span class="lineno">   37</span>                       <span class="stringliteral">&quot;Nie dodawaj opisów ani komentarzy.&quot;</span>;</div>
-<div class="line"><span class="lineno">   38</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   39</span>        systemPrompt = <span class="stringliteral">&quot;Jesteś generatorem skryptów Bash. &quot;</span></div>
-<div class="line"><span class="lineno">   40</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod Bash bez opisów, bez komentarzy. &quot;</span></div>
-<div class="line"><span class="lineno">   41</span>                       <span class="stringliteral">&quot;Używaj TYLKO mv do przenoszenia plików. &quot;</span></div>
-<div class="line"><span class="lineno">   42</span>                       <span class="stringliteral">&quot;NIGDY nie używaj rm -rf. &quot;</span></div>
-<div class="line"><span class="lineno">   43</span>                       <span class="stringliteral">&quot;Aby utworzyć folder użyj: mkdir -p. &quot;</span></div>
-<div class="line"><span class="lineno">   44</span>                       <span class="stringliteral">&quot;Po każdym przeniesieniu użyj: echo &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
-<div class="line"><span class="lineno">   45</span>                       <span class="stringliteral">&quot;NIE pisz słowa MOVED bez echo. &quot;</span></div>
-<div class="line"><span class="lineno">   46</span>                       <span class="stringliteral">&quot;Nie dodawaj żadnych opisów ani komentarzy poza kodem.&quot;</span>;</div>
-<div class="line"><span class="lineno">   47</span>    }</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>    QString fullPrompt = QString(<span class="stringliteral">&quot;Folder: %1\nPolecenie: %2&quot;</span>)</div>
-<div class="line"><span class="lineno">   50</span>                             .arg(folderPath, userPrompt);</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    QJsonObject json;</div>
-<div class="line"><span class="lineno">   53</span>    json[<span class="stringliteral">&quot;model&quot;</span>] = <a class="code hl_variable" href="#a4671b583f8f9e02869806b1e7315fea5">MODEL</a>;</div>
-<div class="line"><span class="lineno">   54</span>    json[<span class="stringliteral">&quot;system&quot;</span>] = systemPrompt;</div>
-<div class="line"><span class="lineno">   55</span>    json[<span class="stringliteral">&quot;prompt&quot;</span>] = fullPrompt;</div>
-<div class="line"><span class="lineno">   56</span>    json[<span class="stringliteral">&quot;stream&quot;</span>] = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   57</span>    json[<span class="stringliteral">&quot;options&quot;</span>] = QJsonObject{{<span class="stringliteral">&quot;num_predict&quot;</span>, 1024}};</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>    <span class="comment">// Pozwól nadpisać URL przez zmienną środowiskową</span></div>
-<div class="line"><span class="lineno">   60</span>    QString apiUrl = QString::fromUtf8(qgetenv(<span class="stringliteral">&quot;OLLAMA_API_URL&quot;</span>));</div>
-<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">if</span> (apiUrl.isEmpty()) apiUrl = <a class="code hl_variable" href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">API_URL</a>;</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    QUrl url(apiUrl);</div>
-<div class="line"><span class="lineno">   64</span>    QNetworkRequest request(url);</div>
-<div class="line"><span class="lineno">   65</span>    request.setHeader(QNetworkRequest::ContentTypeHeader, <span class="stringliteral">&quot;application/json&quot;</span>);</div>
+<div class="line"><span class="lineno">   23</span>    <span class="comment">// ----------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   24</span>    <span class="comment">// Definicja system prompt (kryterium: Definicja system prompt)</span></div>
+<div class="line"><span class="lineno">   25</span>    <span class="comment">// ----------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   26</span>    QString systemPrompt;</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span> (os == <span class="stringliteral">&quot;Windows&quot;</span>) {</div>
+<div class="line"><span class="lineno">   28</span>        systemPrompt = <span class="stringliteral">&quot;Jestes generatorem skryptow PowerShell. &quot;</span></div>
+<div class="line"><span class="lineno">   29</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod PowerShell. &quot;</span></div>
+<div class="line"><span class="lineno">   30</span>                       <span class="stringliteral">&quot;Uzywaj TYLKO Move-Item do przenoszenia plikow. &quot;</span></div>
+<div class="line"><span class="lineno">   31</span>                       <span class="stringliteral">&quot;NIGDY nie uzywaj Remove-Item. &quot;</span></div>
+<div class="line"><span class="lineno">   32</span>                       <span class="stringliteral">&quot;Aby przeniesc plik DO folderu uzyj: Move-Item -Path $file -Destination $folderPath gdzie $folderPath to FOLDER nie pelna sciezka pliku. &quot;</span></div>
+<div class="line"><span class="lineno">   33</span>                       <span class="stringliteral">&quot;Aby filtrowac wiele rozszerzen ZAWSZE uzywaj osobnego Get-ChildItem dla kazdego rozszerzenia osobno. &quot;</span></div>
+<div class="line"><span class="lineno">   34</span>                       <span class="stringliteral">&quot;Nie usuwaj rozszerzen z plikow&quot;</span></div>
+<div class="line"><span class="lineno">   35</span>                       <span class="stringliteral">&quot;Sprawdzaj czy folder istnieje przed przeniesieniem plikow jezeli nie to stworz go w $folderPath&quot;</span></div>
+<div class="line"><span class="lineno">   36</span>                       <span class="stringliteral">&quot;Aby utworzyc folder: New-Item -ItemType Directory -Force -Path $folder. &quot;</span></div>
+<div class="line"><span class="lineno">   37</span>                       <span class="stringliteral">&quot;Po kazdym przeniesieniu: Write-Host &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
+<div class="line"><span class="lineno">   38</span>                       <span class="stringliteral">&quot;Nie dodawaj opisow ani komentarzy.&quot;</span>;</div>
+<div class="line"><span class="lineno">   39</span>                       <span class="stringliteral">&quot;ZAKAZANE: -Filter &#39;*.jpg, *.png&#39; (przecinek w filtrze jest BLEDNY)&quot;</span>;</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   43</span>        systemPrompt = <span class="stringliteral">&quot;Jestes generatorem skryptow Bash. &quot;</span></div>
+<div class="line"><span class="lineno">   44</span>                       <span class="stringliteral">&quot;Generuj TYLKO czysty kod Bash bez opisow, bez komentarzy. &quot;</span></div>
+<div class="line"><span class="lineno">   45</span>                       <span class="stringliteral">&quot;Uzywaj TYLKO mv do przenoszenia plikow. &quot;</span></div>
+<div class="line"><span class="lineno">   46</span>                       <span class="stringliteral">&quot;NIGDY nie uzywaj rm -rf. &quot;</span></div>
+<div class="line"><span class="lineno">   47</span>                       <span class="stringliteral">&quot;Aby utworzyc folder uzyj: mkdir -p. &quot;</span></div>
+<div class="line"><span class="lineno">   48</span>                       <span class="stringliteral">&quot;Po kazdym przeniesieniu uzyj: echo &#39;MOVED: plik -&gt; cel&#39;. &quot;</span></div>
+<div class="line"><span class="lineno">   49</span>                       <span class="stringliteral">&quot;NIE pisz slowa MOVED bez echo. &quot;</span></div>
+<div class="line"><span class="lineno">   50</span>                       <span class="stringliteral">&quot;Nie dodawaj zadnych opisow ani komentarzy poza kodem.&quot;</span>;</div>
+<div class="line"><span class="lineno">   51</span>                       <span class="stringliteral">&quot;- Dla folderu A-Z uzyj: for letter in {A..Z}; do mkdir -p \&quot;$sourcePath/$letter\&quot;; done\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   52</span>    }</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>    QString fullPrompt = QString(<span class="stringliteral">&quot;Folder: %1\nPolecenie: %2&quot;</span>)</div>
+<div class="line"><span class="lineno">   55</span>                             .arg(folderPath, userPrompt);</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    QJsonObject json;</div>
+<div class="line"><span class="lineno">   58</span>    json[<span class="stringliteral">&quot;model&quot;</span>] = <a class="code hl_variable" href="#a4671b583f8f9e02869806b1e7315fea5">MODEL</a>;</div>
+<div class="line"><span class="lineno">   59</span>    json[<span class="stringliteral">&quot;system&quot;</span>] = systemPrompt;</div>
+<div class="line"><span class="lineno">   60</span>    json[<span class="stringliteral">&quot;prompt&quot;</span>] = fullPrompt;</div>
+<div class="line"><span class="lineno">   61</span>    json[<span class="stringliteral">&quot;stream&quot;</span>] = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   62</span>    json[<span class="stringliteral">&quot;options&quot;</span>] = QJsonObject{{<span class="stringliteral">&quot;num_predict&quot;</span>, 1024}};</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    QString apiUrl = QString::fromUtf8(qgetenv(<span class="stringliteral">&quot;OLLAMA_API_URL&quot;</span>));</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">if</span> (apiUrl.isEmpty()) apiUrl = <a class="code hl_variable" href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">API_URL</a>;</div>
 <div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    QByteArray data = QJsonDocument(json).toJson();</div>
-<div class="line"><span class="lineno">   68</span>    QNetworkReply *reply = <a class="code hl_variable" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a>-&gt;post(request, data);</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <span class="comment">// Timeout dla odpowiedzi sieciowej</span></div>
-<div class="line"><span class="lineno">   71</span>    QTimer *netTimer = <span class="keyword">new</span> QTimer(reply);</div>
-<div class="line"><span class="lineno">   72</span>    netTimer-&gt;setSingleShot(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   73</span>    netTimer-&gt;start(8000);</div>
-<div class="line"><span class="lineno">   74</span>    connect(netTimer, &amp;QTimer::timeout, reply, [reply, <span class="keyword">this</span>]() {</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">if</span> (!reply-&gt;isFinished()) {</div>
-<div class="line"><span class="lineno">   76</span>            reply-&gt;abort();</div>
-<div class="line"><span class="lineno">   77</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(<span class="stringliteral">&quot;Timeout: brak odpowiedzi od serwera LLM (Ollama).&quot;</span>);</div>
-<div class="line"><span class="lineno">   78</span>        }</div>
-<div class="line"><span class="lineno">   79</span>    });</div>
-<div class="line"><span class="lineno">   80</span> </div>
-<div class="line"><span class="lineno">   81</span>    connect(reply, &amp;QNetworkReply::finished, <span class="keyword">this</span>, [<span class="keyword">this</span>, reply]() {</div>
-<div class="line"><span class="lineno">   82</span>        <span class="comment">// Jeśli miał miejsce błąd sieciowy -&gt; zgłoś i posprzątaj</span></div>
-<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">if</span> (reply-&gt;error() != QNetworkReply::NoError) {</div>
-<div class="line"><span class="lineno">   84</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(QString(<span class="stringliteral">&quot;Błąd połączenia z Ollama: %1&quot;</span>)</div>
-<div class="line"><span class="lineno">   85</span>                               .arg(reply-&gt;errorString()));</div>
-<div class="line"><span class="lineno">   86</span>            reply-&gt;deleteLater();</div>
-<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   88</span>        }</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>        <span class="comment">// Spróbuj sparsować JSON, a jeśli nie - użyj surowego tekstu</span></div>
-<div class="line"><span class="lineno">   91</span>        QByteArray raw = reply-&gt;readAll();</div>
-<div class="line"><span class="lineno">   92</span>        QString script;</div>
-<div class="line"><span class="lineno">   93</span>        QJsonParseError parseError;</div>
-<div class="line"><span class="lineno">   94</span>        QJsonDocument doc = QJsonDocument::fromJson(raw, &amp;parseError);</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">if</span> (!doc.isNull() &amp;&amp; doc.isObject()) {</div>
-<div class="line"><span class="lineno">   96</span>            QJsonObject obj = doc.object();</div>
-<div class="line"><span class="lineno">   97</span>            <span class="comment">// Różne wersje Ollama mogą zwrócić pole &quot;response&quot; lub &quot;text&quot;</span></div>
-<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;response&quot;</span>)) {</div>
-<div class="line"><span class="lineno">   99</span>                script = obj.value(<span class="stringliteral">&quot;response&quot;</span>).toString();</div>
-<div class="line"><span class="lineno">  100</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;text&quot;</span>)) {</div>
-<div class="line"><span class="lineno">  101</span>                script = obj.value(<span class="stringliteral">&quot;text&quot;</span>).toString();</div>
-<div class="line"><span class="lineno">  102</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  103</span>                <span class="comment">// fallback: całe body jako tekst</span></div>
-<div class="line"><span class="lineno">  104</span>                script = QString::fromUtf8(raw);</div>
-<div class="line"><span class="lineno">  105</span>            }</div>
-<div class="line"><span class="lineno">  106</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  107</span>            script = QString::fromUtf8(raw);</div>
-<div class="line"><span class="lineno">  108</span>        }</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>        <span class="comment">// Usuwanie bloków &lt;think&gt;...&lt;/think&gt; (wielowierszowo)</span></div>
-<div class="line"><span class="lineno">  111</span>        QRegularExpression thinkRe(<span class="stringliteral">&quot;&lt;think&gt;[\\s\\S]*?&lt;/think&gt;&quot;</span>,</div>
-<div class="line"><span class="lineno">  112</span>                                  QRegularExpression::CaseInsensitiveOption);</div>
-<div class="line"><span class="lineno">  113</span>        script.remove(thinkRe);</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>        <span class="comment">// Usuń bloki markdown ```...``` wraz z opcją języka </span></div>
-<div class="line"><span class="lineno">  116</span>        QRegularExpression fenceRe(<span class="stringliteral">&quot;(?s)```[a-zA-Z0-9_-]*\\s*.*?```&quot;</span>,</div>
-<div class="line"><span class="lineno">  117</span>                                   QRegularExpression::CaseInsensitiveOption);</div>
-<div class="line"><span class="lineno">  118</span>        script.remove(fenceRe);</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>        <span class="comment">// Usuń pojedyncze otwierające znaczniki ```powershell lub ```bash</span></div>
-<div class="line"><span class="lineno">  121</span>        QRegularExpression fenceOpenRe(<span class="stringliteral">&quot;(?i)```(?:powershell|bash)?\\s*&quot;</span>);</div>
-<div class="line"><span class="lineno">  122</span>        script.remove(fenceOpenRe);</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>        <span class="comment">// Usuń linie opisowe — angielskie i polskie początki</span></div>
-<div class="line"><span class="lineno">  125</span>        QRegularExpression nonCodeLineRe(</div>
-<div class="line"><span class="lineno">  126</span>            <span class="stringliteral">&quot;^(\\s*(#|//).*|\\s*(First|Next|Now|This|The|Note|Please|Uwaga|Najpierw|Następnie|Teraz|Proszę).*)$&quot;</span>,</div>
-<div class="line"><span class="lineno">  127</span>            QRegularExpression::CaseInsensitiveOption | QRegularExpression::MultilineOption);</div>
-<div class="line"><span class="lineno">  128</span>        <span class="comment">// Dzielimy na linie i filtrujemy, aby zachować kolejność i puste linie usunąć</span></div>
-<div class="line"><span class="lineno">  129</span>        QStringList lines = script.split(QRegularExpression(<span class="stringliteral">&quot;\\r?\\n&quot;</span>));</div>
-<div class="line"><span class="lineno">  130</span>        QStringList cleanLines;</div>
+<div class="line"><span class="lineno">   67</span>    QUrl url(apiUrl);</div>
+<div class="line"><span class="lineno">   68</span>    QNetworkRequest request(url);</div>
+<div class="line"><span class="lineno">   69</span>    request.setHeader(QNetworkRequest::ContentTypeHeader, <span class="stringliteral">&quot;application/json; charset=utf-8&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    QByteArray data = QJsonDocument(json).toJson();</div>
+<div class="line"><span class="lineno">   72</span>    QNetworkReply *reply = <a class="code hl_variable" href="#a02e15f6c13b845e9a200176e1df8a912">manager</a>-&gt;post(request, data);</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    <span class="comment">/*QTimer *netTimer = new QTimer(reply);</span></div>
+<div class="line"><span class="lineno">   75</span><span class="comment">    netTimer-&gt;setSingleShot(true);</span></div>
+<div class="line"><span class="lineno">   76</span><span class="comment">    netTimer-&gt;start(180000);</span></div>
+<div class="line"><span class="lineno">   77</span><span class="comment">    connect(netTimer, &amp;QTimer::timeout, reply, [reply, this]() {</span></div>
+<div class="line"><span class="lineno">   78</span><span class="comment">        if (!reply-&gt;isFinished()) {</span></div>
+<div class="line"><span class="lineno">   79</span><span class="comment">            reply-&gt;abort();</span></div>
+<div class="line"><span class="lineno">   80</span><span class="comment">            emit errorOccurred(&quot;Timeout: brak odpowiedzi od serwera LLM (Ollama) po 180 sekundach.&quot;);</span></div>
+<div class="line"><span class="lineno">   81</span><span class="comment">        }</span></div>
+<div class="line"><span class="lineno">   82</span><span class="comment">    });*/</span></div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>    connect(reply, &amp;QNetworkReply::finished, <span class="keyword">this</span>, [<span class="keyword">this</span>, reply]() {</div>
+<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">if</span> (reply-&gt;error() != QNetworkReply::NoError) {</div>
+<div class="line"><span class="lineno">   86</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(QString(<span class="stringliteral">&quot;Blad polaczenia z Ollama: %1&quot;</span>)</div>
+<div class="line"><span class="lineno">   87</span>                               .arg(reply-&gt;errorString()));</div>
+<div class="line"><span class="lineno">   88</span>            reply-&gt;deleteLater();</div>
+<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   90</span>        }</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>        <span class="comment">// ----------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   93</span>        <span class="comment">// Parsowanie odpowiedzi i czyszczenie skryptu</span></div>
+<div class="line"><span class="lineno">   94</span>        <span class="comment">// ----------------------------------------------------------</span></div>
+<div class="line"><span class="lineno">   95</span>        QByteArray raw = reply-&gt;readAll();</div>
+<div class="line"><span class="lineno">   96</span>        QString script;</div>
+<div class="line"><span class="lineno">   97</span>        QJsonParseError parseError;</div>
+<div class="line"><span class="lineno">   98</span>        QJsonDocument doc = QJsonDocument::fromJson(raw, &amp;parseError);</div>
+<div class="line"><span class="lineno">   99</span>        </div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">if</span> (!doc.isNull() &amp;&amp; doc.isObject()) {</div>
+<div class="line"><span class="lineno">  101</span>            QJsonObject obj = doc.object();</div>
+<div class="line"><span class="lineno">  102</span>            <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;response&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  103</span>                script = obj.value(<span class="stringliteral">&quot;response&quot;</span>).toString();</div>
+<div class="line"><span class="lineno">  104</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (obj.contains(<span class="stringliteral">&quot;text&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  105</span>                script = obj.value(<span class="stringliteral">&quot;text&quot;</span>).toString();</div>
+<div class="line"><span class="lineno">  106</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  107</span>                script = QString::fromUtf8(raw);</div>
+<div class="line"><span class="lineno">  108</span>            }</div>
+<div class="line"><span class="lineno">  109</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  110</span>            script = QString::fromUtf8(raw);</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>        <span class="comment">// ZMIANA: Bezpieczniejsze czyszczenie</span></div>
+<div class="line"><span class="lineno">  114</span>        <span class="comment">// 1. Usuń bloki &lt;think&gt;...&lt;/think&gt;</span></div>
+<div class="line"><span class="lineno">  115</span>        script.remove(QRegularExpression(<span class="stringliteral">&quot;&lt;think&gt;[\\s\\S]*?&lt;/think&gt;&quot;</span>,</div>
+<div class="line"><span class="lineno">  116</span>                                  QRegularExpression::CaseInsensitiveOption));</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>        <span class="comment">// 2. Usuń bloki markdown ```powershell...``` lub ```bash...```</span></div>
+<div class="line"><span class="lineno">  119</span>        <span class="comment">// Wzorzec: ``` opcjonalny język (powershell/bash) dowolny tekst ```</span></div>
+<div class="line"><span class="lineno">  120</span>        script.remove(QRegularExpression(<span class="stringliteral">&quot;```(?:powershell|bash)?\\s*\\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  121</span>                                        QRegularExpression::CaseInsensitiveOption));</div>
+<div class="line"><span class="lineno">  122</span>        script.remove(QRegularExpression(<span class="stringliteral">&quot;\\n?```\\s*$&quot;</span>,</div>
+<div class="line"><span class="lineno">  123</span>                                        QRegularExpression::CaseInsensitiveOption));</div>
+<div class="line"><span class="lineno">  124</span>        script.remove(QRegularExpression(<span class="stringliteral">&quot;^```\\s*&quot;</span>,</div>
+<div class="line"><span class="lineno">  125</span>                                        QRegularExpression::CaseInsensitiveOption));</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>        <span class="comment">// 3. Usuń tylko linie CAŁKOWICIE opisowe (nie dotykaj kodu)</span></div>
+<div class="line"><span class="lineno">  128</span>        QStringList lines = script.split(QRegularExpression(<span class="stringliteral">&quot;\\r?\\n&quot;</span>));</div>
+<div class="line"><span class="lineno">  129</span>        QStringList cleanLines;</div>
+<div class="line"><span class="lineno">  130</span>        </div>
 <div class="line"><span class="lineno">  131</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> QString &amp;line : lines) {</div>
 <div class="line"><span class="lineno">  132</span>            QString trimmed = line.trimmed();</div>
-<div class="line"><span class="lineno">  133</span>            <span class="keywordflow">if</span> (trimmed.isEmpty()) <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">if</span> (trimmed.startsWith(<span class="charliteral">&#39;#&#39;</span>) || trimmed.startsWith(<span class="stringliteral">&quot;//&quot;</span>)) <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">if</span> (nonCodeLineRe.match(line).hasMatch()) <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  136</span>            cleanLines.append(line);</div>
-<div class="line"><span class="lineno">  137</span>        }</div>
-<div class="line"><span class="lineno">  138</span>        script = cleanLines.join(<span class="stringliteral">&quot;\n&quot;</span>).trimmed();</div>
-<div class="line"><span class="lineno">  139</span> </div>
-<div class="line"><span class="lineno">  140</span>        <span class="comment">// Napraw brakujące nawiasy klamrowe</span></div>
-<div class="line"><span class="lineno">  141</span>        <span class="keywordtype">int</span> openBraces = script.count(<span class="charliteral">&#39;{&#39;</span>);</div>
-<div class="line"><span class="lineno">  142</span>        <span class="keywordtype">int</span> closeBraces = script.count(<span class="charliteral">&#39;}&#39;</span>);</div>
-<div class="line"><span class="lineno">  143</span>        <span class="keywordflow">while</span> (closeBraces &lt; openBraces) {</div>
-<div class="line"><span class="lineno">  144</span>            script += <span class="stringliteral">&quot;\n}&quot;</span>;</div>
-<div class="line"><span class="lineno">  145</span>            closeBraces++;</div>
-<div class="line"><span class="lineno">  146</span>        }</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">if</span> (script.isEmpty()) {</div>
-<div class="line"><span class="lineno">  149</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(<span class="stringliteral">&quot;Otrzymano pusty skrypt od modelu LLM.&quot;</span>);</div>
-<div class="line"><span class="lineno">  150</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  151</span>            emit <a class="code hl_signal" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady</a>(script);</div>
-<div class="line"><span class="lineno">  152</span>        }</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>        reply-&gt;deleteLater();</div>
-<div class="line"><span class="lineno">  155</span>    });</div>
-<div class="line"><span class="lineno">  156</span>}</div>
+<div class="line"><span class="lineno">  133</span>            </div>
+<div class="line"><span class="lineno">  134</span>            <span class="comment">// Pomiń puste linie</span></div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">if</span> (trimmed.isEmpty()) {</div>
+<div class="line"><span class="lineno">  136</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  137</span>            }</div>
+<div class="line"><span class="lineno">  138</span>            </div>
+<div class="line"><span class="lineno">  139</span>            <span class="comment">// Pomiń tylko linie komentarzy</span></div>
+<div class="line"><span class="lineno">  140</span>            <span class="keywordflow">if</span> (trimmed.startsWith(<span class="charliteral">&#39;#&#39;</span>) &amp;&amp; !trimmed.contains(<span class="stringliteral">&quot;MOVED:&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  141</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  142</span>            }</div>
+<div class="line"><span class="lineno">  143</span>            </div>
+<div class="line"><span class="lineno">  144</span>            <span class="comment">// Pomiń linie zaczynające się od opisowych słów (TYLKO jeśli nie ma znaku $ lub Move-Item)</span></div>
+<div class="line"><span class="lineno">  145</span>            <span class="keywordtype">bool</span> isDescriptiveLine = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  146</span>            QStringList descriptiveStarts = {<span class="stringliteral">&quot;First&quot;</span>, <span class="stringliteral">&quot;Next&quot;</span>, <span class="stringliteral">&quot;Now&quot;</span>, <span class="stringliteral">&quot;This&quot;</span>, <span class="stringliteral">&quot;The&quot;</span>, <span class="stringliteral">&quot;Note&quot;</span>, <span class="stringliteral">&quot;Please&quot;</span>, </div>
+<div class="line"><span class="lineno">  147</span>                                              <span class="stringliteral">&quot;Uwaga&quot;</span>, <span class="stringliteral">&quot;Najpierw&quot;</span>, <span class="stringliteral">&quot;Nastepnie&quot;</span>, <span class="stringliteral">&quot;Teraz&quot;</span>, <span class="stringliteral">&quot;Prosze&quot;</span>,</div>
+<div class="line"><span class="lineno">  148</span>                                              <span class="stringliteral">&quot;Here&quot;</span>, <span class="stringliteral">&quot;To&quot;</span>, <span class="stringliteral">&quot;You&quot;</span>, <span class="stringliteral">&quot;We&quot;</span>};</div>
+<div class="line"><span class="lineno">  149</span>            </div>
+<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> QString &amp;desc : descriptiveStarts) {</div>
+<div class="line"><span class="lineno">  151</span>                <span class="keywordflow">if</span> (trimmed.startsWith(desc, Qt::CaseInsensitive) &amp;&amp; </div>
+<div class="line"><span class="lineno">  152</span>                    !trimmed.contains(<span class="stringliteral">&quot;$&quot;</span>) &amp;&amp; </div>
+<div class="line"><span class="lineno">  153</span>                    !trimmed.contains(<span class="stringliteral">&quot;Move-Item&quot;</span>) &amp;&amp;</div>
+<div class="line"><span class="lineno">  154</span>                    !trimmed.contains(<span class="stringliteral">&quot;Get-ChildItem&quot;</span>) &amp;&amp;</div>
+<div class="line"><span class="lineno">  155</span>                    !trimmed.contains(<span class="stringliteral">&quot;New-Item&quot;</span>) &amp;&amp;</div>
+<div class="line"><span class="lineno">  156</span>                    !trimmed.contains(<span class="stringliteral">&quot;mkdir&quot;</span>) &amp;&amp;</div>
+<div class="line"><span class="lineno">  157</span>                    !trimmed.contains(<span class="stringliteral">&quot;mv&quot;</span>) &amp;&amp;</div>
+<div class="line"><span class="lineno">  158</span>                    !trimmed.contains(<span class="stringliteral">&quot;echo&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  159</span>                    isDescriptiveLine = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  160</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  161</span>                }</div>
+<div class="line"><span class="lineno">  162</span>            }</div>
+<div class="line"><span class="lineno">  163</span>            </div>
+<div class="line"><span class="lineno">  164</span>            <span class="keywordflow">if</span> (isDescriptiveLine) {</div>
+<div class="line"><span class="lineno">  165</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  166</span>            }</div>
+<div class="line"><span class="lineno">  167</span>            </div>
+<div class="line"><span class="lineno">  168</span>            <span class="comment">// Dodaj linię do oczyszczonego skryptu</span></div>
+<div class="line"><span class="lineno">  169</span>            cleanLines.append(line); <span class="comment">// Zachowaj oryginalne wcięcia!</span></div>
+<div class="line"><span class="lineno">  170</span>        }</div>
+<div class="line"><span class="lineno">  171</span>        </div>
+<div class="line"><span class="lineno">  172</span>        script = cleanLines.join(<span class="stringliteral">&quot;\n&quot;</span>).trimmed();</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>        <span class="comment">// 4. Napraw brakujące nawiasy klamrowe</span></div>
+<div class="line"><span class="lineno">  175</span>        <span class="keywordtype">int</span> openBraces = script.count(<span class="charliteral">&#39;{&#39;</span>);</div>
+<div class="line"><span class="lineno">  176</span>        <span class="keywordtype">int</span> closeBraces = script.count(<span class="charliteral">&#39;}&#39;</span>);</div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">while</span> (closeBraces &lt; openBraces) {</div>
+<div class="line"><span class="lineno">  178</span>            script += <span class="stringliteral">&quot;\n}&quot;</span>;</div>
+<div class="line"><span class="lineno">  179</span>            closeBraces++;</div>
+<div class="line"><span class="lineno">  180</span>        }</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>        <span class="comment">// 5. Sprawdź czy skrypt nie jest pusty</span></div>
+<div class="line"><span class="lineno">  183</span>        <span class="keywordflow">if</span> (script.isEmpty() || script.length() &lt; 10) {</div>
+<div class="line"><span class="lineno">  184</span>            emit <a class="code hl_signal" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred</a>(QString(<span class="stringliteral">&quot;Otrzymano pusty lub zbyt krotki skrypt od modelu LLM.\n\nSurowa odpowiedz:\n%1&quot;</span>)</div>
+<div class="line"><span class="lineno">  185</span>                              .arg(QString::fromUtf8(raw).left(500)));</div>
+<div class="line"><span class="lineno">  186</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  187</span>            emit <a class="code hl_signal" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady</a>(script);</div>
+<div class="line"><span class="lineno">  188</span>        }</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>        reply-&gt;deleteLater();</div>
+<div class="line"><span class="lineno">  191</span>    });</div>
+<div class="line"><span class="lineno">  192</span>}</div>
 <div class="ttc" id="aclass_llm_client_html_a0522e85ec1c702f2176fd1b8ad359982"><div class="ttname"><a href="#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady</a></div><div class="ttdeci">void scriptReady(const QString &amp;script)</div></div>
 <div class="ttc" id="aclass_llm_client_html_a0b7cad2b762365b8910725da6bd9e595"><div class="ttname"><a href="#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
-<div class="ttc" id="aclass_llm_client_html_a4671b583f8f9e02869806b1e7315fea5"><div class="ttname"><a href="#a4671b583f8f9e02869806b1e7315fea5">LlmClient::MODEL</a></div><div class="ttdeci">const QString MODEL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00048">llmclient.h:48</a></div></div>
-<div class="ttc" id="aclass_llm_client_html_aaaa906d2b1ffc08195fda0f92d3bc5eb"><div class="ttname"><a href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">LlmClient::API_URL</a></div><div class="ttdeci">const QString API_URL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00047">llmclient.h:47</a></div></div>
+<div class="ttc" id="aclass_llm_client_html_a4671b583f8f9e02869806b1e7315fea5"><div class="ttname"><a href="#a4671b583f8f9e02869806b1e7315fea5">LlmClient::MODEL</a></div><div class="ttdeci">const QString MODEL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00060">llmclient.h:60</a></div></div>
+<div class="ttc" id="aclass_llm_client_html_aaaa906d2b1ffc08195fda0f92d3bc5eb"><div class="ttname"><a href="#aaaa906d2b1ffc08195fda0f92d3bc5eb">LlmClient::API_URL</a></div><div class="ttdeci">const QString API_URL</div><div class="ttdef"><b>Definition</b> <a href="llmclient_8h_source.html#l00058">llmclient.h:58</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00047">API_URL</a>, <a class="el" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred()</a>, <a class="el" href="llmclient_8h_source.html#l00046">manager</a>, <a class="el" href="llmclient_8h_source.html#l00048">MODEL</a>, and <a class="el" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady()</a>.</p>
+<p class="reference">References <a class="el" href="llmclient_8h_source.html#l00058">API_URL</a>, <a class="el" href="#a0b7cad2b762365b8910725da6bd9e595">errorOccurred()</a>, <a class="el" href="llmclient_8h_source.html#l00056">manager</a>, <a class="el" href="llmclient_8h_source.html#l00060">MODEL</a>, and <a class="el" href="#a0522e85ec1c702f2176fd1b8ad359982">scriptReady()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="test__main_8cpp_source.html#l00112">FileOrganizerTests::test_llmClient_emitsError_whenNoServer()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="test__main_8cpp_source.html#l00048">FileOrganizerTests::test_llmClient_emitsError_whenNoOllama()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -428,7 +474,7 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 <p>Emitted when a cleaned script is ready. </p>
 
-<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, and <a class="el" href="test__main_8cpp_source.html#l00062">FileOrganizerTests::test_llmClient_returnsCleanScript_fromLocalServer()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow::MainWindow()</a>, and <a class="el" href="test__main_8cpp_source.html#l00048">FileOrganizerTests::test_llmClient_emitsError_whenNoOllama()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -458,7 +504,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00047">47</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00058">58</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>.</p>
 
@@ -484,7 +530,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00046">46</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00056">56</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>, and <a class="el" href="llmclient_8cpp_source.html#l00013">LlmClient()</a>.</p>
 
@@ -510,7 +556,7 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00048">48</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="llmclient_8h_source.html#l00060">60</a> of file <a class="el" href="llmclient_8h_source.html">llmclient.h</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="llmclient_8cpp_source.html#l00019">generateScript()</a>.</p>
 

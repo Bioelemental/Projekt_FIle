@@ -93,7 +93,7 @@ $(function(){initNavTree('class_script_runner.html','','class_script_runner-memb
 </div><!--header-->
 <div class="contents">
 
-<p>Klasa do uruchamiania skryptów systemowych.  
+<p>Klasa zarządzająca workerem i wątkiem.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>&gt;</code></p>
@@ -112,26 +112,35 @@ Collaboration diagram for ScriptRunner:</div>
 Signals</h2></td></tr>
 <tr class="memitem:a6c2af2e0aed6c7ee9aa8f69e6dedc0d3" id="r_a6c2af2e0aed6c7ee9aa8f69e6dedc0d3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">finished</a> (const QString &amp;output)</td></tr>
 <tr class="memitem:a6764d21bb5569397e3e410a83353c3f0" id="r_a6764d21bb5569397e3e410a83353c3f0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred</a> (const QString &amp;error)</td></tr>
+<tr class="memitem:af41ed2b96a7943067f13dbaeaab9d685" id="r_af41ed2b96a7943067f13dbaeaab9d685"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af41ed2b96a7943067f13dbaeaab9d685">requestRun</a> (const QString &amp;script)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6fca5691724636bff1304833872638b7" id="r_a6fca5691724636bff1304833872638b7"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a6fca5691724636bff1304833872638b7">ScriptRunner</a> (QObject *parent=nullptr)</td></tr>
-<tr class="memdesc:a6fca5691724636bff1304833872638b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor <a class="el" href="class_script_runner.html" title="Klasa do uruchamiania skryptów systemowych.">ScriptRunner</a>.  <br /></td></tr>
+<tr class="memdesc:a6fca5691724636bff1304833872638b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor <a class="el" href="class_script_runner.html" title="Klasa zarządzająca workerem i wątkiem.">ScriptRunner</a> — tworzy wątek i workera.  <br /></td></tr>
+<tr class="memitem:afd6402bcb4b1443b73754ec4d14be659" id="r_afd6402bcb4b1443b73754ec4d14be659"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afd6402bcb4b1443b73754ec4d14be659">~ScriptRunner</a> ()</td></tr>
+<tr class="memdesc:afd6402bcb4b1443b73754ec4d14be659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor — zamyka wątek i czeka.  <br /></td></tr>
 <tr class="memitem:a611bb4bc3dc89ab90516d94d117ef4d7" id="r_a611bb4bc3dc89ab90516d94d117ef4d7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a611bb4bc3dc89ab90516d94d117ef4d7">runScript</a> (const QString &amp;scriptContent)</td></tr>
+<tr class="memdesc:a611bb4bc3dc89ab90516d94d117ef4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publiczne API — żądanie uruchomienia skryptu (nie blokuje).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a12ca3c44dddb55eb98248b59eb43223d" id="r_a12ca3c44dddb55eb98248b59eb43223d"><td class="memItemLeft">static QString&#160;</td><td class="memItemRight"><a class="el" href="#a12ca3c44dddb55eb98248b59eb43223d">detectOS</a> ()</td></tr>
-<tr class="memdesc:a12ca3c44dddb55eb98248b59eb43223d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wykrywa system operacyjny.  <br /></td></tr>
+<tr class="memdesc:a12ca3c44dddb55eb98248b59eb43223d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wykrywa system operacyjny (bez zmian).  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:aac619dbbaebd2e7cb0d3b68aa142b1a4" id="r_aac619dbbaebd2e7cb0d3b68aa142b1a4"><td class="memItemLeft">QProcess *&#160;</td><td class="memItemRight"><a class="el" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a></td></tr>
+<tr class="memitem:a9bbbbe612c457f155bc33f8a9d149427" id="r_a9bbbbe612c457f155bc33f8a9d149427"><td class="memItemLeft">QThread *&#160;</td><td class="memItemRight"><a class="el" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a></td></tr>
+<tr class="memitem:a605c1dd46ac8dea8145706c081d74a7e" id="r_a605c1dd46ac8dea8145706c081d74a7e"><td class="memItemLeft"><a class="el" href="class_script_runner_worker.html">ScriptRunnerWorker</a> *&#160;</td><td class="memItemRight"><a class="el" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Klasa do uruchamiania skryptów systemowych. </p>
+<div class="textblock"><p>Klasa zarządzająca workerem i wątkiem. </p>
+<ul>
+<li>Tworzy QThread i przenosi do niego <a class="el" href="class_script_runner_worker.html" title="Worker wykonujący skrypt w osobnym wątku.">ScriptRunnerWorker</a>.</li>
+<li><span class="tt"><a class="el" href="#a611bb4bc3dc89ab90516d94d117ef4d7" title="Publiczne API — żądanie uruchomienia skryptu (nie blokuje).">runScript()</a></span> emituje sygnał <span class="tt"><a class="el" href="#af41ed2b96a7943067f13dbaeaab9d685">requestRun</a></span> przekazywany do workera (QueuedConnection). </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="scriptrunner_8h_source.html#l00010">10</a> of file <a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8h_source.html#l00035">35</a> of file <a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>.</p>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6fca5691724636bff1304833872638b7" name="a6fca5691724636bff1304833872638b7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6fca5691724636bff1304833872638b7">&#9670;&#160;</a></span>ScriptRunner()</h2>
@@ -156,16 +165,79 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Konstruktor <a class="el" href="class_script_runner.html" title="Klasa do uruchamiania skryptów systemowych.">ScriptRunner</a>. </p>
+<p>Konstruktor <a class="el" href="class_script_runner.html" title="Klasa zarządzająca workerem i wątkiem.">ScriptRunner</a> — tworzy wątek i workera. </p>
 
-<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00011">11</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>                                          : QObject(parent)</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a> = <span class="keyword">new</span> QProcess(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   14</span>}</div>
-<div class="ttc" id="aclass_script_runner_html_aac619dbbaebd2e7cb0d3b68aa142b1a4"><div class="ttname"><a href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">ScriptRunner::process</a></div><div class="ttdeci">QProcess * process</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8h_source.html#l00024">scriptrunner.h:24</a></div></div>
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00091">91</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   91</span>                                          : QObject(parent)</div>
+<div class="line"><span class="lineno">   92</span>{</div>
+<div class="line"><span class="lineno">   93</span>    <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a> = <span class="keyword">new</span> QThread(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   94</span>    <a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a> = <span class="keyword">new</span> ScriptRunnerWorker();</div>
+<div class="line"><span class="lineno">   95</span>    <a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a>-&gt;moveToThread(<a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>);</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>    <span class="comment">// Przekierowanie żądań do workera (kolejkowane połączenie)</span></div>
+<div class="line"><span class="lineno">   98</span>    connect(<span class="keyword">this</span>, &amp;<a class="code hl_signal" href="#af41ed2b96a7943067f13dbaeaab9d685">ScriptRunner::requestRun</a>,</div>
+<div class="line"><span class="lineno">   99</span>            <a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a>, &amp;<a class="code hl_slot" href="class_script_runner_worker.html#a63b1edea8723e37ccdafc889051c3fd9">ScriptRunnerWorker::doRunScript</a>,</div>
+<div class="line"><span class="lineno">  100</span>            Qt::QueuedConnection);</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    <span class="comment">// Forward sygnałów z workera do użytkowników ScriptRunner</span></div>
+<div class="line"><span class="lineno">  103</span>    connect(<a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a>, &amp;<a class="code hl_signal" href="class_script_runner_worker.html#a636db35afb55b23ef78a2b4409eebffb">ScriptRunnerWorker::finished</a>,</div>
+<div class="line"><span class="lineno">  104</span>            <span class="keyword">this</span>, &amp;<a class="code hl_signal" href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a>);</div>
+<div class="line"><span class="lineno">  105</span>    connect(<a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a>, &amp;<a class="code hl_signal" href="class_script_runner_worker.html#a1168496d93ab8667cf93993cfd2a5215">ScriptRunnerWorker::errorOccurred</a>,</div>
+<div class="line"><span class="lineno">  106</span>            <span class="keyword">this</span>, &amp;<a class="code hl_signal" href="#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a>);</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>    <span class="comment">// Upewnij się, że worker zostanie posprzątany razem z wątkiem</span></div>
+<div class="line"><span class="lineno">  109</span>    connect(<a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>, &amp;QThread::finished, <a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a>, &amp;QObject::deleteLater);</div>
+<div class="line"><span class="lineno">  110</span> </div>
+<div class="line"><span class="lineno">  111</span>    <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>-&gt;start();</div>
+<div class="line"><span class="lineno">  112</span>}</div>
+<div class="ttc" id="aclass_script_runner_html_a605c1dd46ac8dea8145706c081d74a7e"><div class="ttname"><a href="#a605c1dd46ac8dea8145706c081d74a7e">ScriptRunner::worker</a></div><div class="ttdeci">ScriptRunnerWorker * worker</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8h_source.html#l00055">scriptrunner.h:55</a></div></div>
+<div class="ttc" id="aclass_script_runner_html_a6764d21bb5569397e3e410a83353c3f0"><div class="ttname"><a href="#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
+<div class="ttc" id="aclass_script_runner_html_a6c2af2e0aed6c7ee9aa8f69e6dedc0d3"><div class="ttname"><a href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a></div><div class="ttdeci">void finished(const QString &amp;output)</div></div>
+<div class="ttc" id="aclass_script_runner_html_a9bbbbe612c457f155bc33f8a9d149427"><div class="ttname"><a href="#a9bbbbe612c457f155bc33f8a9d149427">ScriptRunner::workerThread</a></div><div class="ttdeci">QThread * workerThread</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8h_source.html#l00054">scriptrunner.h:54</a></div></div>
+<div class="ttc" id="aclass_script_runner_html_af41ed2b96a7943067f13dbaeaab9d685"><div class="ttname"><a href="#af41ed2b96a7943067f13dbaeaab9d685">ScriptRunner::requestRun</a></div><div class="ttdeci">void requestRun(const QString &amp;script)</div></div>
+<div class="ttc" id="aclass_script_runner_worker_html_a1168496d93ab8667cf93993cfd2a5215"><div class="ttname"><a href="class_script_runner_worker.html#a1168496d93ab8667cf93993cfd2a5215">ScriptRunnerWorker::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
+<div class="ttc" id="aclass_script_runner_worker_html_a636db35afb55b23ef78a2b4409eebffb"><div class="ttname"><a href="class_script_runner_worker.html#a636db35afb55b23ef78a2b4409eebffb">ScriptRunnerWorker::finished</a></div><div class="ttdeci">void finished(const QString &amp;output)</div></div>
+<div class="ttc" id="aclass_script_runner_worker_html_a63b1edea8723e37ccdafc889051c3fd9"><div class="ttname"><a href="class_script_runner_worker.html#a63b1edea8723e37ccdafc889051c3fd9">ScriptRunnerWorker::doRunScript</a></div><div class="ttdeci">void doRunScript(const QString &amp;scriptContent)</div><div class="ttdoc">Wykonaj skrypt w wątku workera.</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00021">scriptrunner.cpp:21</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="scriptrunner_8h_source.html#l00024">process</a>.</p>
+<p class="reference">References <a class="el" href="scriptrunner_8cpp_source.html#l00021">ScriptRunnerWorker::doRunScript()</a>, <a class="el" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred()</a>, <a class="el" href="class_script_runner_worker.html#a1168496d93ab8667cf93993cfd2a5215">ScriptRunnerWorker::errorOccurred()</a>, <a class="el" href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">finished()</a>, <a class="el" href="class_script_runner_worker.html#a636db35afb55b23ef78a2b4409eebffb">ScriptRunnerWorker::finished()</a>, <a class="el" href="#af41ed2b96a7943067f13dbaeaab9d685">requestRun()</a>, <a class="el" href="scriptrunner_8h_source.html#l00055">worker</a>, and <a class="el" href="scriptrunner_8h_source.html#l00054">workerThread</a>.</p>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 2 --></div>
+</div>
+
+</div>
+</div>
+<a id="afd6402bcb4b1443b73754ec4d14be659" name="afd6402bcb4b1443b73754ec4d14be659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd6402bcb4b1443b73754ec4d14be659">&#9670;&#160;</a></span>~ScriptRunner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ScriptRunner::~ScriptRunner </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destruktor — zamyka wątek i czeka. </p>
+
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00117">117</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>) {</div>
+<div class="line"><span class="lineno">  120</span>        <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>-&gt;quit();</div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>-&gt;wait();</div>
+<div class="line"><span class="lineno">  122</span>        <span class="comment">// worker zostanie usunięty przez powiązanie z finished</span></div>
+<div class="line"><span class="lineno">  123</span>        <span class="keyword">delete</span> <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a>;</div>
+<div class="line"><span class="lineno">  124</span>        <a class="code hl_variable" href="#a9bbbbe612c457f155bc33f8a9d149427">workerThread</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  125</span>        <a class="code hl_variable" href="#a605c1dd46ac8dea8145706c081d74a7e">worker</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  126</span>    }</div>
+<div class="line"><span class="lineno">  127</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="scriptrunner_8h_source.html#l00055">worker</a>, and <a class="el" href="scriptrunner_8h_source.html#l00054">workerThread</a>.</p>
 
 </div>
 </div>
@@ -193,22 +265,22 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Wykrywa system operacyjny. </p>
+<p>Wykrywa system operacyjny (bez zmian). </p>
 
-<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00019">19</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>{</div>
-<div class="line"><span class="lineno">   21</span><span class="preprocessor">#ifdef Q_OS_WIN</span></div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;Windows&quot;</span>;</div>
-<div class="line"><span class="lineno">   23</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;Linux&quot;</span>;</div>
-<div class="line"><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   26</span>}</div>
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00141">141</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
+<div class="line"><span class="lineno">  143</span><span class="preprocessor">#ifdef Q_OS_WIN</span></div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;Windows&quot;</span>;</div>
+<div class="line"><span class="lineno">  145</span><span class="preprocessor">#else</span></div>
+<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;Linux&quot;</span>;</div>
+<div class="line"><span class="lineno">  147</span><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="lineno">  148</span>}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00049">MainWindow::on_previewButton_clicked()</a>, <a class="el" href="scriptrunner_8cpp_source.html#l00029">runScript()</a>, <a class="el" href="test__main_8cpp_source.html#l00026">FileOrganizerTests::test_detectOS_isWindows()</a>, <a class="el" href="test__main_8cpp_source.html#l00016">FileOrganizerTests::test_detectOS_notEmpty()</a>, and <a class="el" href="test__main_8cpp_source.html#l00021">FileOrganizerTests::test_detectOS_validValue()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00060">MainWindow::on_previewButton_clicked()</a>, <a class="el" href="test__main_8cpp_source.html#l00032">FileOrganizerTests::test_detectOS_isWindows()</a>, <a class="el" href="test__main_8cpp_source.html#l00022">FileOrganizerTests::test_detectOS_notEmpty()</a>, and <a class="el" href="test__main_8cpp_source.html#l00027">FileOrganizerTests::test_detectOS_validValue()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 2 --></div>
+<div class="center"><!-- SVG 3 --></div>
 </div>
 
 </div>
@@ -236,11 +308,11 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, <a class="el" href="scriptrunner_8cpp_source.html#l00029">runScript()</a>, and <a class="el" href="test__main_8cpp_source.html#l00034">FileOrganizerTests::test_scriptExecution_echo()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow::MainWindow()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00091">ScriptRunner()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 3 --></div>
+<div class="center"><!-- SVG 4 --></div>
 </div>
 
 </div>
@@ -268,11 +340,43 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow::MainWindow()</a>, <a class="el" href="scriptrunner_8cpp_source.html#l00029">runScript()</a>, and <a class="el" href="test__main_8cpp_source.html#l00034">FileOrganizerTests::test_scriptExecution_echo()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow::MainWindow()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00091">ScriptRunner()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 4 --></div>
+<div class="center"><!-- SVG 5 --></div>
+</div>
+
+</div>
+</div>
+<a id="af41ed2b96a7943067f13dbaeaab9d685" name="af41ed2b96a7943067f13dbaeaab9d685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41ed2b96a7943067f13dbaeaab9d685">&#9670;&#160;</a></span>requestRun</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ScriptRunner::requestRun </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>script</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel signal">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="scriptrunner_8cpp_source.html#l00132">runScript()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00091">ScriptRunner()</a>.</p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><!-- SVG 6 --></div>
 </div>
 
 </div>
@@ -292,92 +396,26 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00029">29</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{</div>
-<div class="line"><span class="lineno">   31</span>    QString os = <a class="code hl_function" href="#a12ca3c44dddb55eb98248b59eb43223d">detectOS</a>();</div>
-<div class="line"><span class="lineno">   32</span>    QString suffix = (os == <span class="stringliteral">&quot;Windows&quot;</span>) ? <span class="stringliteral">&quot;.ps1&quot;</span> : <span class="stringliteral">&quot;.sh&quot;</span>;</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>    QTemporaryFile tmpFile;</div>
-<div class="line"><span class="lineno">   35</span>    tmpFile.setFileTemplate(QDir::tempPath() + <span class="stringliteral">&quot;/organizer_XXXXXX&quot;</span> + suffix);</div>
-<div class="line"><span class="lineno">   36</span>    tmpFile.setAutoRemove(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">if</span> (!tmpFile.open()) {</div>
-<div class="line"><span class="lineno">   39</span>        emit <a class="code hl_signal" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred</a>(<span class="stringliteral">&quot;Nie można utworzyć pliku tymczasowego!&quot;</span>);</div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   41</span>    }</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    <span class="comment">// Na Windows dopisujemy BOM, aby PowerShell poprawnie czytał polskie znaki w starszych konfiguracjach</span></div>
-<div class="line"><span class="lineno">   44</span><span class="preprocessor">#ifdef Q_OS_WIN</span></div>
-<div class="line"><span class="lineno">   45</span>    tmpFile.write(<span class="stringliteral">&quot;\xEF\xBB\xBF&quot;</span>);</div>
-<div class="line"><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   47</span>    tmpFile.write(scriptContent.toUtf8());</div>
-<div class="line"><span class="lineno">   48</span>    tmpFile.close();</div>
-<div class="line"><span class="lineno">   49</span>    QString scriptPath = tmpFile.fileName();</div>
-<div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>    <span class="comment">// Upewnij się że nie ma starych połączeń</span></div>
-<div class="line"><span class="lineno">   52</span>    <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;disconnect();</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;setProcessChannelMode(QProcess::MergedChannels);</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    connect(<a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>, QOverload&lt;int, QProcess::ExitStatus&gt;::of(&amp;QProcess::finished),</div>
-<div class="line"><span class="lineno">   57</span>            <span class="keyword">this</span>, [<span class="keyword">this</span>, scriptPath](<span class="keywordtype">int</span> exitCode, QProcess::ExitStatus) {</div>
-<div class="line"><span class="lineno">   58</span>                QString output = <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;readAllStandardOutput();</div>
-<div class="line"><span class="lineno">   59</span>                QString errors = <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;readAllStandardError();</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>                <span class="comment">// Usuń plik tymczasowy</span></div>
-<div class="line"><span class="lineno">   62</span>                QFile::remove(scriptPath);</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>                <span class="keywordflow">if</span> (!errors.isEmpty()) {</div>
-<div class="line"><span class="lineno">   65</span>                    emit <a class="code hl_signal" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred</a>(errors.trimmed());</div>
-<div class="line"><span class="lineno">   66</span>                } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   67</span>                    emit <a class="code hl_signal" href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">finished</a>(output.trimmed());</div>
-<div class="line"><span class="lineno">   68</span>                }</div>
-<div class="line"><span class="lineno">   69</span>            });</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    <span class="comment">// Timeout wykonania procesu (60s)</span></div>
-<div class="line"><span class="lineno">   72</span>    QTimer *procTimer = <span class="keyword">new</span> QTimer(<a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>);</div>
-<div class="line"><span class="lineno">   73</span>    procTimer-&gt;setSingleShot(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   74</span>    procTimer-&gt;start(60000);</div>
-<div class="line"><span class="lineno">   75</span>    connect(procTimer, &amp;QTimer::timeout, <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>, [<span class="keyword">this</span>, scriptPath]() {</div>
-<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;state() != QProcess::NotRunning) {</div>
-<div class="line"><span class="lineno">   77</span>            <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;kill();</div>
-<div class="line"><span class="lineno">   78</span>            QFile::remove(scriptPath);</div>
-<div class="line"><span class="lineno">   79</span>            emit <a class="code hl_signal" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred</a>(<span class="stringliteral">&quot;Przekroczono czas wykonania skryptu (timeout).&quot;</span>);</div>
-<div class="line"><span class="lineno">   80</span>        }</div>
-<div class="line"><span class="lineno">   81</span>    });</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span><span class="preprocessor">#ifdef Q_OS_WIN</span></div>
-<div class="line"><span class="lineno">   84</span>    <span class="comment">// Uruchom PowerShell z bypass execution policy</span></div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;start(<span class="stringliteral">&quot;powershell&quot;</span>, {<span class="stringliteral">&quot;-ExecutionPolicy&quot;</span>, <span class="stringliteral">&quot;Bypass&quot;</span>, <span class="stringliteral">&quot;-File&quot;</span>, scriptPath});</div>
-<div class="line"><span class="lineno">   86</span><span class="preprocessor">#else</span></div>
-<div class="line"><span class="lineno">   87</span>    <span class="comment">// Nadaj prawa wykonywania i uruchom bash</span></div>
-<div class="line"><span class="lineno">   88</span>    QFile::setPermissions(scriptPath, QFile::permissions(scriptPath) | QFileDevice::ExeUser);</div>
-<div class="line"><span class="lineno">   89</span>    <a class="code hl_variable" href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">process</a>-&gt;start(<span class="stringliteral">&quot;bash&quot;</span>, {scriptPath});</div>
-<div class="line"><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
-<div class="line"><span class="lineno">   91</span>}</div>
-<div class="ttc" id="aclass_script_runner_html_a12ca3c44dddb55eb98248b59eb43223d"><div class="ttname"><a href="#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a></div><div class="ttdeci">static QString detectOS()</div><div class="ttdoc">Wykrywa system operacyjny.</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00019">scriptrunner.cpp:19</a></div></div>
-<div class="ttc" id="aclass_script_runner_html_a6764d21bb5569397e3e410a83353c3f0"><div class="ttname"><a href="#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
-<div class="ttc" id="aclass_script_runner_html_a6c2af2e0aed6c7ee9aa8f69e6dedc0d3"><div class="ttname"><a href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a></div><div class="ttdeci">void finished(const QString &amp;output)</div></div>
-</div><!-- fragment -->
-<p class="reference">References <a class="el" href="scriptrunner_8cpp_source.html#l00019">detectOS()</a>, <a class="el" href="#a6764d21bb5569397e3e410a83353c3f0">errorOccurred()</a>, <a class="el" href="#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">finished()</a>, and <a class="el" href="scriptrunner_8h_source.html#l00024">process</a>.</p>
+<p>Publiczne API — żądanie uruchomienia skryptu (nie blokuje). </p>
 
-<p class="reference">Referenced by <a class="el" href="test__main_8cpp_source.html#l00034">FileOrganizerTests::test_scriptExecution_echo()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8cpp_source.html#l00132">132</a> of file <a class="el" href="scriptrunner_8cpp_source.html">scriptrunner.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  133</span>{</div>
+<div class="line"><span class="lineno">  134</span>    <span class="comment">// Emitujemy sygnał, worker wykona pracę w swoim wątku (QueuedConnection).</span></div>
+<div class="line"><span class="lineno">  135</span>    emit <a class="code hl_signal" href="#af41ed2b96a7943067f13dbaeaab9d685">requestRun</a>(scriptContent);</div>
+<div class="line"><span class="lineno">  136</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="#af41ed2b96a7943067f13dbaeaab9d685">requestRun()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><!-- SVG 5 --></div>
-</div>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><!-- SVG 6 --></div>
+<div class="center"><!-- SVG 7 --></div>
 </div>
 
 </div>
 </div>
 <a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
-<a id="aac619dbbaebd2e7cb0d3b68aa142b1a4" name="aac619dbbaebd2e7cb0d3b68aa142b1a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac619dbbaebd2e7cb0d3b68aa142b1a4">&#9670;&#160;</a></span>process</h2>
+<a id="a605c1dd46ac8dea8145706c081d74a7e" name="a605c1dd46ac8dea8145706c081d74a7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a605c1dd46ac8dea8145706c081d74a7e">&#9670;&#160;</a></span>worker</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,7 +424,7 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QProcess* ScriptRunner::process</td>
+          <td class="memname"><a class="el" href="class_script_runner_worker.html">ScriptRunnerWorker</a>* ScriptRunner::worker</td>
         </tr>
       </table>
   </td>
@@ -396,9 +434,35 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="scriptrunner_8h_source.html#l00024">24</a> of file <a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8h_source.html#l00055">55</a> of file <a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="scriptrunner_8cpp_source.html#l00029">runScript()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00011">ScriptRunner()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="scriptrunner_8cpp_source.html#l00091">ScriptRunner()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00117">~ScriptRunner()</a>.</p>
+
+</div>
+</div>
+<a id="a9bbbbe612c457f155bc33f8a9d149427" name="a9bbbbe612c457f155bc33f8a9d149427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bbbbe612c457f155bc33f8a9d149427">&#9670;&#160;</a></span>workerThread</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QThread* ScriptRunner::workerThread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel private">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="scriptrunner_8h_source.html#l00054">54</a> of file <a class="el" href="scriptrunner_8h_source.html">scriptrunner.h</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="scriptrunner_8cpp_source.html#l00091">ScriptRunner()</a>, and <a class="el" href="scriptrunner_8cpp_source.html#l00117">~ScriptRunner()</a>.</p>
 
 </div>
 </div>

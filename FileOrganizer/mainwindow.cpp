@@ -4,13 +4,8 @@
 #include <QMessageBox>
 
 /**
- * @brief Konstruktor MainWindow
- *
- * MAPOWANIE KRYTERIÓW:
- * - Interfejs graficzny: pola `folderPathEdit`, `commandEdit`, `reportEdit` (UI).
- * - Komunikacja z LLM: wywołanie `llmClient->generateScript(...)`.
- * - Obsługa błędów: slot `onError` wyświetla komunikaty użytkownikowi.
- * - Automatyczne wykonanie skryptu: delegowane do `ScriptRunner::runScript`.
+ * @ Konstruktor MainWindow
+ 
  */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,9 +33,7 @@ MainWindow::~MainWindow()
 }
 
 /**
- * @brief Otwiera dialog wyboru folderu
- *
- * UI: pole `folderPathEdit` -> miejsce gdzie użytkownik wskazuje folder.
+ * @ Otwiera dialog wyboru folderu
  */
 void MainWindow::on_browseButton_clicked()
 {
@@ -52,10 +45,8 @@ void MainWindow::on_browseButton_clicked()
 }
 
 /**
- * @brief Generuje podgląd skryptu bez wykonywania
+ * @ Generuje podgląd skryptu bez wykonywania
  *
- * - Pobiera `commandEdit` i `folderPathEdit`, waliduje wejście (kryterium: ostrzeżenie przy braku danych).
- * - Uruchamia `LlmClient::generateScript` (kryterium: generowanie na podstawie parametrów użytkownika).
  */
 void MainWindow::on_previewButton_clicked()
 {
@@ -81,10 +72,7 @@ void MainWindow::on_previewButton_clicked()
 }
 
 /**
- * @brief Wykonuje wygenerowany skrypt
- *
- * - Aktualnie wymaga potwierdzenia użytkownika; aby mieć pełne "automatyczne wykonanie",
- *   usuń dialog `QMessageBox::question` (zmiana wymagana ręcznie).
+ * @ Wykonuje wygenerowany skrypt
  */
 void MainWindow::on_runButton_clicked()
 {
@@ -107,9 +95,7 @@ void MainWindow::on_runButton_clicked()
 }
 
 /**
- * @brief Obsługuje gotowy skrypt od LLM
- *
- * - Odbiera oczyszczony skrypt i wyświetla podgląd (kryterium: generacja skryptu).
+ * @ Obsługuje gotowy skrypt od LLM
  */
 void MainWindow::onScriptReady(const QString &script)
 {
@@ -120,7 +106,7 @@ void MainWindow::onScriptReady(const QString &script)
 }
 
 /**
- * @brief Obsługuje wynik wykonania skryptu
+ * @ Obsługuje wynik wykonania skryptu
  */
 void MainWindow::onScriptFinished(const QString &output)
 {
@@ -130,9 +116,8 @@ void MainWindow::onScriptFinished(const QString &output)
 }
 
 /**
- * @brief Obsługuje błędy
- *
- * - Informuje użytkownika o problemach z dostępnością usługi / wykonania.
+ * @ Obsługuje błędy
+ 
  */
 void MainWindow::onError(const QString &error)
 {
@@ -142,7 +127,7 @@ void MainWindow::onError(const QString &error)
 }
 
 /**
- * @brief Włącza/wyłącza przyciski podczas operacji
+ * @ Włącza/wyłącza przyciski podczas operacji
  */
 void MainWindow::setButtonsEnabled(bool enabled)
 {

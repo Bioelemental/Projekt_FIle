@@ -31,7 +31,7 @@ ollama serve
 - Uruchom (Ctrl+R)
 
 ## Uruchomienie testów
-W Qt Creator: Budowanie → Uruchom testy
+W Qt Creator: Edycja → FileOrganizerTests → Uruchamianie
 
 ## Jak używać
 1. Kliknij "Wybierz folder" i wskaż folder do organizacji

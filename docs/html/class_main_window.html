@@ -162,40 +162,46 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Konstruktor <a class="el" href="class_main_window.html" title="Główne okno aplikacji FileOrganizer.">MainWindow</a>. </p>
+<p>MAPOWANIE KRYTERIÓW:</p><ul>
+<li>Interfejs graficzny: pola <span class="tt">folderPathEdit</span>, <span class="tt">commandEdit</span>, <span class="tt">reportEdit</span> (UI).</li>
+<li>Komunikacja z LLM: wywołanie <span class="tt">llmClient-&gt;generateScript(...)</span>.</li>
+<li>Obsługa błędów: slot <span class="tt"><a class="el" href="#a5b6bb012a687b33402722cb9ac5f29b6" title="Obsługuje błędy.">onError</a></span> wyświetla komunikaty użytkownikowi.</li>
+<li>Automatyczne wykonanie skryptu: delegowane do <span class="tt"><a class="el" href="class_script_runner.html#a611bb4bc3dc89ab90516d94d117ef4d7" title="Publiczne API — żądanie uruchomienia skryptu (nie blokuje).">ScriptRunner::runScript</a></span>. </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00009">9</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>    : QMainWindow(parent)</div>
-<div class="line"><span class="lineno">   11</span>    , <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>(<span class="keyword">new</span> Ui::MainWindow)</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   14</span>    setWindowTitle(<span class="stringliteral">&quot;🗂️ Inteligentny Organizator Plików&quot;</span>);</div>
-<div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>    <a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a> = <span class="keyword">new</span> LlmClient(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a> = <span class="keyword">new</span> ScriptRunner(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>    connect(<a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>, &amp;<a class="code hl_signal" href="class_llm_client.html#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady</a>,</div>
-<div class="line"><span class="lineno">   20</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#acab2c338b084abb74e3ca9a8f81a45b9">MainWindow::onScriptReady</a>);</div>
-<div class="line"><span class="lineno">   21</span>    connect(<a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>, &amp;<a class="code hl_signal" href="class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred</a>,</div>
-<div class="line"><span class="lineno">   22</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a>);</div>
-<div class="line"><span class="lineno">   23</span>    connect(<a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>, &amp;<a class="code hl_signal" href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a>,</div>
-<div class="line"><span class="lineno">   24</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#acd9b22e480798e28072fdf12f2d152bd">MainWindow::onScriptFinished</a>);</div>
-<div class="line"><span class="lineno">   25</span>    connect(<a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>, &amp;<a class="code hl_signal" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a>,</div>
-<div class="line"><span class="lineno">   26</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a>);</div>
-<div class="line"><span class="lineno">   27</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00015">15</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>    : QMainWindow(parent)</div>
+<div class="line"><span class="lineno">   17</span>    , <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>(<span class="keyword">new</span> Ui::MainWindow)</div>
+<div class="line"><span class="lineno">   18</span>{</div>
+<div class="line"><span class="lineno">   19</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   20</span>    setWindowTitle(<span class="stringliteral">&quot;🗂️ Inteligentny Organizator Plików&quot;</span>);</div>
+<div class="line"><span class="lineno">   21</span> </div>
+<div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a> = <span class="keyword">new</span> LlmClient(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a> = <span class="keyword">new</span> ScriptRunner(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    connect(<a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>, &amp;<a class="code hl_signal" href="class_llm_client.html#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady</a>,</div>
+<div class="line"><span class="lineno">   26</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#acab2c338b084abb74e3ca9a8f81a45b9">MainWindow::onScriptReady</a>);</div>
+<div class="line"><span class="lineno">   27</span>    connect(<a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>, &amp;<a class="code hl_signal" href="class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred</a>,</div>
+<div class="line"><span class="lineno">   28</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a>);</div>
+<div class="line"><span class="lineno">   29</span>    connect(<a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>, &amp;<a class="code hl_signal" href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a>,</div>
+<div class="line"><span class="lineno">   30</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#acd9b22e480798e28072fdf12f2d152bd">MainWindow::onScriptFinished</a>);</div>
+<div class="line"><span class="lineno">   31</span>    connect(<a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>, &amp;<a class="code hl_signal" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a>,</div>
+<div class="line"><span class="lineno">   32</span>            <span class="keyword">this</span>, &amp;<a class="code hl_slot" href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a>);</div>
+<div class="line"><span class="lineno">   33</span>}</div>
 <div class="ttc" id="aclass_llm_client_html_a0522e85ec1c702f2176fd1b8ad359982"><div class="ttname"><a href="class_llm_client.html#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady</a></div><div class="ttdeci">void scriptReady(const QString &amp;script)</div></div>
 <div class="ttc" id="aclass_llm_client_html_a0b7cad2b762365b8910725da6bd9e595"><div class="ttname"><a href="class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
 <div class="ttc" id="aclass_main_window_html_a35466a70ed47252a0191168126a352a5"><div class="ttname"><a href="#a35466a70ed47252a0191168126a352a5">MainWindow::ui</a></div><div class="ttdeci">Ui::MainWindow * ui</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00032">mainwindow.h:32</a></div></div>
-<div class="ttc" id="aclass_main_window_html_a5b6bb012a687b33402722cb9ac5f29b6"><div class="ttname"><a href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a></div><div class="ttdeci">void onError(const QString &amp;error)</div><div class="ttdoc">Obsługuje błędy.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00119">mainwindow.cpp:119</a></div></div>
+<div class="ttc" id="aclass_main_window_html_a5b6bb012a687b33402722cb9ac5f29b6"><div class="ttname"><a href="#a5b6bb012a687b33402722cb9ac5f29b6">MainWindow::onError</a></div><div class="ttdeci">void onError(const QString &amp;error)</div><div class="ttdoc">Obsługuje błędy.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00137">mainwindow.cpp:137</a></div></div>
 <div class="ttc" id="aclass_main_window_html_a6c9647be17f74aa20262368a19b41b03"><div class="ttname"><a href="#a6c9647be17f74aa20262368a19b41b03">MainWindow::scriptRunner</a></div><div class="ttdeci">ScriptRunner * scriptRunner</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00034">mainwindow.h:34</a></div></div>
 <div class="ttc" id="aclass_main_window_html_a709dffeb1e3a38ffb0e192f75098505e"><div class="ttname"><a href="#a709dffeb1e3a38ffb0e192f75098505e">MainWindow::llmClient</a></div><div class="ttdeci">LlmClient * llmClient</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00033">mainwindow.h:33</a></div></div>
-<div class="ttc" id="aclass_main_window_html_acab2c338b084abb74e3ca9a8f81a45b9"><div class="ttname"><a href="#acab2c338b084abb74e3ca9a8f81a45b9">MainWindow::onScriptReady</a></div><div class="ttdeci">void onScriptReady(const QString &amp;script)</div><div class="ttdoc">Obsługuje gotowy skrypt od LLM.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00098">mainwindow.cpp:98</a></div></div>
-<div class="ttc" id="aclass_main_window_html_acd9b22e480798e28072fdf12f2d152bd"><div class="ttname"><a href="#acd9b22e480798e28072fdf12f2d152bd">MainWindow::onScriptFinished</a></div><div class="ttdeci">void onScriptFinished(const QString &amp;output)</div><div class="ttdoc">Obsługuje wynik wykonania skryptu.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00109">mainwindow.cpp:109</a></div></div>
+<div class="ttc" id="aclass_main_window_html_acab2c338b084abb74e3ca9a8f81a45b9"><div class="ttname"><a href="#acab2c338b084abb74e3ca9a8f81a45b9">MainWindow::onScriptReady</a></div><div class="ttdeci">void onScriptReady(const QString &amp;script)</div><div class="ttdoc">Obsługuje gotowy skrypt od LLM.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00114">mainwindow.cpp:114</a></div></div>
+<div class="ttc" id="aclass_main_window_html_acd9b22e480798e28072fdf12f2d152bd"><div class="ttname"><a href="#acd9b22e480798e28072fdf12f2d152bd">MainWindow::onScriptFinished</a></div><div class="ttdeci">void onScriptFinished(const QString &amp;output)</div><div class="ttdoc">Obsługuje wynik wykonania skryptu.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00125">mainwindow.cpp:125</a></div></div>
 <div class="ttc" id="aclass_script_runner_html_a6764d21bb5569397e3e410a83353c3f0"><div class="ttname"><a href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred</a></div><div class="ttdeci">void errorOccurred(const QString &amp;error)</div></div>
 <div class="ttc" id="aclass_script_runner_html_a6c2af2e0aed6c7ee9aa8f69e6dedc0d3"><div class="ttname"><a href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished</a></div><div class="ttdeci">void finished(const QString &amp;output)</div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred()</a>, <a class="el" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred()</a>, <a class="el" href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished()</a>, <a class="el" href="mainwindow_8h_source.html#l00033">llmClient</a>, <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00119">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00109">onScriptFinished()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00098">onScriptReady()</a>, <a class="el" href="class_llm_client.html#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady()</a>, <a class="el" href="mainwindow_8h_source.html#l00034">scriptRunner</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="class_llm_client.html#a0b7cad2b762365b8910725da6bd9e595">LlmClient::errorOccurred()</a>, <a class="el" href="class_script_runner.html#a6764d21bb5569397e3e410a83353c3f0">ScriptRunner::errorOccurred()</a>, <a class="el" href="class_script_runner.html#a6c2af2e0aed6c7ee9aa8f69e6dedc0d3">ScriptRunner::finished()</a>, <a class="el" href="mainwindow_8h_source.html#l00033">llmClient</a>, <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00137">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00125">onScriptFinished()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00114">onScriptReady()</a>, <a class="el" href="class_llm_client.html#a0522e85ec1c702f2176fd1b8ad359982">LlmClient::scriptReady()</a>, <a class="el" href="mainwindow_8h_source.html#l00034">scriptRunner</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -224,10 +230,10 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00029">29</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   30</span>{</div>
-<div class="line"><span class="lineno">   31</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>;</div>
-<div class="line"><span class="lineno">   32</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00035">35</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{</div>
+<div class="line"><span class="lineno">   37</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
@@ -258,15 +264,16 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Otwiera dialog wyboru folderu. </p>
+<p>UI: pole <span class="tt">folderPathEdit</span> -&gt; miejsce gdzie użytkownik wskazuje folder. </p>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00037">37</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
-<div class="line"><span class="lineno">   39</span>    QString folder = QFileDialog::getExistingDirectory(</div>
-<div class="line"><span class="lineno">   40</span>        <span class="keyword">this</span>, <span class="stringliteral">&quot;Wybierz folder&quot;</span>, QDir::homePath());</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">if</span> (!folder.isEmpty()) {</div>
-<div class="line"><span class="lineno">   42</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;setText(folder);</div>
-<div class="line"><span class="lineno">   43</span>    }</div>
-<div class="line"><span class="lineno">   44</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00045">45</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
+<div class="line"><span class="lineno">   47</span>    QString folder = QFileDialog::getExistingDirectory(</div>
+<div class="line"><span class="lineno">   48</span>        <span class="keyword">this</span>, <span class="stringliteral">&quot;Wybierz folder&quot;</span>, QDir::homePath());</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">if</span> (!folder.isEmpty()) {</div>
+<div class="line"><span class="lineno">   50</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;setText(folder);</div>
+<div class="line"><span class="lineno">   51</span>    }</div>
+<div class="line"><span class="lineno">   52</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
@@ -296,33 +303,37 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Generuje podgląd skryptu bez wykonywania. </p>
+<ul>
+<li>Pobiera <span class="tt">commandEdit</span> i <span class="tt">folderPathEdit</span>, waliduje wejście (kryterium: ostrzeżenie przy braku danych).</li>
+<li>Uruchamia <span class="tt"><a class="el" href="class_llm_client.html#ad1a893664320d80bcbde59706a90d435" title="Wygeneruj skrypt na podstawie promptu.">LlmClient::generateScript</a></span> (kryterium: generowanie na podstawie parametrów użytkownika). </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00049">49</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>{</div>
-<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;text().isEmpty()) {</div>
-<div class="line"><span class="lineno">   52</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak folderu&quot;</span>,</div>
-<div class="line"><span class="lineno">   53</span>                             <span class="stringliteral">&quot;Proszę wybrać folder do organizacji!&quot;</span>);</div>
-<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;commandEdit-&gt;toPlainText().isEmpty()) {</div>
-<div class="line"><span class="lineno">   57</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak polecenia&quot;</span>,</div>
-<div class="line"><span class="lineno">   58</span>                             <span class="stringliteral">&quot;Proszę wpisać polecenie!&quot;</span>);</div>
-<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;⏳ Generowanie skryptu...&quot;</span>);</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    <a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>-&gt;generateScript(</div>
-<div class="line"><span class="lineno">   66</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;commandEdit-&gt;toPlainText(),</div>
-<div class="line"><span class="lineno">   67</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;text(),</div>
-<div class="line"><span class="lineno">   68</span>        <a class="code hl_function" href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a>()</div>
-<div class="line"><span class="lineno">   69</span>        );</div>
-<div class="line"><span class="lineno">   70</span>}</div>
-<div class="ttc" id="aclass_main_window_html_acc64aafa71349eedd2a32483a335ecdc"><div class="ttname"><a href="#acc64aafa71349eedd2a32483a335ecdc">MainWindow::setButtonsEnabled</a></div><div class="ttdeci">void setButtonsEnabled(bool enabled)</div><div class="ttdoc">Włącza/wyłącza przyciski podczas operacji.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00129">mainwindow.cpp:129</a></div></div>
-<div class="ttc" id="aclass_script_runner_html_a12ca3c44dddb55eb98248b59eb43223d"><div class="ttname"><a href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a></div><div class="ttdeci">static QString detectOS()</div><div class="ttdoc">Wykrywa system operacyjny.</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00019">scriptrunner.cpp:19</a></div></div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00060">60</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>{</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;text().isEmpty()) {</div>
+<div class="line"><span class="lineno">   63</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak folderu&quot;</span>,</div>
+<div class="line"><span class="lineno">   64</span>                             <span class="stringliteral">&quot;Proszę wybrać folder do organizacji!&quot;</span>);</div>
+<div class="line"><span class="lineno">   65</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   66</span>    }</div>
+<div class="line"><span class="lineno">   67</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;commandEdit-&gt;toPlainText().isEmpty()) {</div>
+<div class="line"><span class="lineno">   68</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak polecenia&quot;</span>,</div>
+<div class="line"><span class="lineno">   69</span>                             <span class="stringliteral">&quot;Proszę wpisać polecenie!&quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   71</span>    }</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;⏳ Generowanie skryptu...&quot;</span>);</div>
+<div class="line"><span class="lineno">   74</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    <a class="code hl_variable" href="#a709dffeb1e3a38ffb0e192f75098505e">llmClient</a>-&gt;generateScript(</div>
+<div class="line"><span class="lineno">   77</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;commandEdit-&gt;toPlainText(),</div>
+<div class="line"><span class="lineno">   78</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;folderPathEdit-&gt;text(),</div>
+<div class="line"><span class="lineno">   79</span>        <a class="code hl_function" href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a>()</div>
+<div class="line"><span class="lineno">   80</span>        );</div>
+<div class="line"><span class="lineno">   81</span>}</div>
+<div class="ttc" id="aclass_main_window_html_acc64aafa71349eedd2a32483a335ecdc"><div class="ttname"><a href="#acc64aafa71349eedd2a32483a335ecdc">MainWindow::setButtonsEnabled</a></div><div class="ttdeci">void setButtonsEnabled(bool enabled)</div><div class="ttdoc">Włącza/wyłącza przyciski podczas operacji.</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8cpp_source.html#l00147">mainwindow.cpp:147</a></div></div>
+<div class="ttc" id="aclass_script_runner_html_a12ca3c44dddb55eb98248b59eb43223d"><div class="ttname"><a href="class_script_runner.html#a12ca3c44dddb55eb98248b59eb43223d">ScriptRunner::detectOS</a></div><div class="ttdeci">static QString detectOS()</div><div class="ttdoc">Wykrywa system operacyjny (bez zmian).</div><div class="ttdef"><b>Definition</b> <a href="scriptrunner_8cpp_source.html#l00141">scriptrunner.cpp:141</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="scriptrunner_8cpp_source.html#l00019">ScriptRunner::detectOS()</a>, <a class="el" href="mainwindow_8h_source.html#l00033">llmClient</a>, <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="scriptrunner_8cpp_source.html#l00141">ScriptRunner::detectOS()</a>, <a class="el" href="mainwindow_8h_source.html#l00033">llmClient</a>, <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -355,29 +366,32 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Wykonuje wygenerowany skrypt. </p>
+<ul>
+<li>Aktualnie wymaga potwierdzenia użytkownika; aby mieć pełne "automatyczne wykonanie", usuń dialog <span class="tt">QMessageBox::question</span> (zmiana wymagana ręcznie). </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00075">75</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>.isEmpty()) {</div>
-<div class="line"><span class="lineno">   78</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak skryptu&quot;</span>,</div>
-<div class="line"><span class="lineno">   79</span>                             <span class="stringliteral">&quot;Najpierw wygeneruj podgląd skryptu!&quot;</span>);</div>
-<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   81</span>    }</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>    QMessageBox::StandardButton reply = QMessageBox::question(</div>
-<div class="line"><span class="lineno">   84</span>        <span class="keyword">this</span>, <span class="stringliteral">&quot;Potwierdzenie&quot;</span>,</div>
-<div class="line"><span class="lineno">   85</span>        <span class="stringliteral">&quot;Czy na pewno chcesz wykonać operacje na plikach?&quot;</span>,</div>
-<div class="line"><span class="lineno">   86</span>        QMessageBox::Yes | QMessageBox::No);</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> (reply == QMessageBox::Yes) {</div>
-<div class="line"><span class="lineno">   89</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;⏳ Wykonywanie skryptu...&quot;</span>);</div>
-<div class="line"><span class="lineno">   90</span>        <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   91</span>        <a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>-&gt;runScript(<a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>);</div>
-<div class="line"><span class="lineno">   92</span>    }</div>
-<div class="line"><span class="lineno">   93</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00089">89</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   90</span>{</div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>.isEmpty()) {</div>
+<div class="line"><span class="lineno">   92</span>        QMessageBox::warning(<span class="keyword">this</span>, <span class="stringliteral">&quot;Brak skryptu&quot;</span>,</div>
+<div class="line"><span class="lineno">   93</span>                             <span class="stringliteral">&quot;Najpierw wygeneruj podgląd skryptu!&quot;</span>);</div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   95</span>    }</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>    QMessageBox::StandardButton reply = QMessageBox::question(</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keyword">this</span>, <span class="stringliteral">&quot;Potwierdzenie&quot;</span>,</div>
+<div class="line"><span class="lineno">   99</span>        <span class="stringliteral">&quot;Czy na pewno chcesz wykonać operacje na plikach?&quot;</span>,</div>
+<div class="line"><span class="lineno">  100</span>        QMessageBox::Yes | QMessageBox::No);</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (reply == QMessageBox::Yes) {</div>
+<div class="line"><span class="lineno">  103</span>        <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;⏳ Wykonywanie skryptu...&quot;</span>);</div>
+<div class="line"><span class="lineno">  104</span>        <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  105</span>        <a class="code hl_variable" href="#a6c9647be17f74aa20262368a19b41b03">scriptRunner</a>-&gt;runScript(<a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>);</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span>}</div>
 <div class="ttc" id="aclass_main_window_html_a71189440fa6f4d3b91f8ddf465ac3d02"><div class="ttname"><a href="#a71189440fa6f4d3b91f8ddf465ac3d02">MainWindow::currentScript</a></div><div class="ttdeci">QString currentScript</div><div class="ttdef"><b>Definition</b> <a href="mainwindow_8h_source.html#l00035">mainwindow.h:35</a></div></div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8h_source.html#l00034">scriptRunner</a>, <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8h_source.html#l00034">scriptRunner</a>, <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -410,17 +424,20 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Obsługuje błędy. </p>
+<ul>
+<li>Informuje użytkownika o problemach z dostępnością usługi / wykonania. </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00119">119</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  120</span>{</div>
-<div class="line"><span class="lineno">  121</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;❌ BŁĄD:\n\n&quot;</span> + error);</div>
-<div class="line"><span class="lineno">  122</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  123</span>    QMessageBox::critical(<span class="keyword">this</span>, <span class="stringliteral">&quot;Błąd&quot;</span>, error);</div>
-<div class="line"><span class="lineno">  124</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00137">137</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  138</span>{</div>
+<div class="line"><span class="lineno">  139</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;❌ BŁĄD:\n\n&quot;</span> + error);</div>
+<div class="line"><span class="lineno">  140</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  141</span>    QMessageBox::critical(<span class="keyword">this</span>, <span class="stringliteral">&quot;Błąd&quot;</span>, error);</div>
+<div class="line"><span class="lineno">  142</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -459,16 +476,16 @@ Here is the caller graph for this function:</div>
 
 <p>Obsługuje wynik wykonania skryptu. </p>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00109">109</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
-<div class="line"><span class="lineno">  111</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;✅ WYKONANO!\n\n&quot;</span> + output);</div>
-<div class="line"><span class="lineno">  112</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>.clear();</div>
-<div class="line"><span class="lineno">  114</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00125">125</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  126</span>{</div>
+<div class="line"><span class="lineno">  127</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;✅ WYKONANO!\n\n&quot;</span> + output);</div>
+<div class="line"><span class="lineno">  128</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  129</span>    <a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a>.clear();</div>
+<div class="line"><span class="lineno">  130</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -506,18 +523,21 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Obsługuje gotowy skrypt od LLM. </p>
+<ul>
+<li>Odbiera oczyszczony skrypt i wyświetla podgląd (kryterium: generacja skryptu). </li>
+</ul>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00098">98</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   99</span>{</div>
-<div class="line"><span class="lineno">  100</span>    <a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a> = script;</div>
-<div class="line"><span class="lineno">  101</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;📋 PODGLĄD SKRYPTU:\n\n&quot;</span> + script +</div>
-<div class="line"><span class="lineno">  102</span>                                 <span class="stringliteral">&quot;\n\n✅ Kliknij &#39;Wykonaj&#39; aby uruchomić.&quot;</span>);</div>
-<div class="line"><span class="lineno">  103</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  104</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00114">114</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>{</div>
+<div class="line"><span class="lineno">  116</span>    <a class="code hl_variable" href="#a71189440fa6f4d3b91f8ddf465ac3d02">currentScript</a> = script;</div>
+<div class="line"><span class="lineno">  117</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;reportEdit-&gt;setPlainText(<span class="stringliteral">&quot;📋 PODGLĄD SKRYPTU:\n\n&quot;</span> + script +</div>
+<div class="line"><span class="lineno">  118</span>                                 <span class="stringliteral">&quot;\n\n✅ Kliknij &#39;Wykonaj&#39; aby uruchomić.&quot;</span>);</div>
+<div class="line"><span class="lineno">  119</span>    <a class="code hl_function" href="#acc64aafa71349eedd2a32483a335ecdc">setButtonsEnabled</a>(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  120</span>}</div>
 </div><!-- fragment -->
-<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
+<p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00035">currentScript</a>, <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -556,16 +576,16 @@ Here is the caller graph for this function:</div>
 
 <p>Włącza/wyłącza przyciski podczas operacji. </p>
 
-<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00129">129</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
-<div class="line"><span class="lineno">  131</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;previewButton-&gt;setEnabled(enabled);</div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;runButton-&gt;setEnabled(enabled);</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;browseButton-&gt;setEnabled(enabled);</div>
-<div class="line"><span class="lineno">  134</span>}</div>
+<p class="definition">Definition at line <a class="el" href="mainwindow_8cpp_source.html#l00147">147</a> of file <a class="el" href="mainwindow_8cpp_source.html">mainwindow.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
+<div class="line"><span class="lineno">  149</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;previewButton-&gt;setEnabled(enabled);</div>
+<div class="line"><span class="lineno">  150</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;runButton-&gt;setEnabled(enabled);</div>
+<div class="line"><span class="lineno">  151</span>    <a class="code hl_variable" href="#a35466a70ed47252a0191168126a352a5">ui</a>-&gt;browseButton-&gt;setEnabled(enabled);</div>
+<div class="line"><span class="lineno">  152</span>}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="mainwindow_8h_source.html#l00032">ui</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00049">on_previewButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00075">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00119">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00109">onScriptFinished()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00098">onScriptReady()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00060">on_previewButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00089">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00137">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00125">onScriptFinished()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00114">onScriptReady()</a>.</p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -597,7 +617,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="mainwindow_8h_source.html#l00035">35</a> of file <a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00075">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00109">onScriptFinished()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00098">onScriptReady()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00089">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00125">onScriptFinished()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00114">onScriptReady()</a>.</p>
 
 </div>
 </div>
@@ -623,7 +643,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="mainwindow_8h_source.html#l00033">33</a> of file <a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00049">on_previewButton_clicked()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00060">on_previewButton_clicked()</a>.</p>
 
 </div>
 </div>
@@ -649,7 +669,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="mainwindow_8h_source.html#l00034">34</a> of file <a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00075">on_runButton_clicked()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00089">on_runButton_clicked()</a>.</p>
 
 </div>
 </div>
@@ -675,7 +695,7 @@ Here is the caller graph for this function:</div>
 
 <p class="definition">Definition at line <a class="el" href="mainwindow_8h_source.html#l00032">32</a> of file <a class="el" href="mainwindow_8h_source.html">mainwindow.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00009">MainWindow()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00037">on_browseButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00049">on_previewButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00075">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00119">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00109">onScriptFinished()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00098">onScriptReady()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00129">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00029">~MainWindow()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="mainwindow_8cpp_source.html#l00015">MainWindow()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00045">on_browseButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00060">on_previewButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00089">on_runButton_clicked()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00137">onError()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00125">onScriptFinished()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00114">onScriptReady()</a>, <a class="el" href="mainwindow_8cpp_source.html#l00147">setButtonsEnabled()</a>, and <a class="el" href="mainwindow_8cpp_source.html#l00035">~MainWindow()</a>.</p>
 
 </div>
 </div>

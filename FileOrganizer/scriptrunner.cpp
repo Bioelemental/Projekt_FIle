@@ -6,14 +6,14 @@
 #include <QTextStream>
 
 /**
- * @brief Konstruktor workera
+ * @ Konstruktor workera
  */
 ScriptRunnerWorker::ScriptRunnerWorker(QObject *parent) : QObject(parent)
 {
 }
 
 /**
- * @brief Wykonaj skrypt w wątku workera.
+ * @ Wykonaj skrypt w wątku workera.
  *
  * - Tworzy plik tymczasowy, uruchamia QProcess w tym samym wątku (bez blokowania UI).
  * - Obsługuje timeout i zwraca wynik przez sygnały.
@@ -86,7 +86,7 @@ void ScriptRunnerWorker::doRunScript(const QString &scriptContent)
 }
 
 /**
- * @brief Konstruktor ScriptRunner — tworzy wątek i workera
+ * @ Konstruktor ScriptRunner — tworzy wątek i workera
  */
 ScriptRunner::ScriptRunner(QObject *parent) : QObject(parent)
 {
@@ -105,14 +105,14 @@ ScriptRunner::ScriptRunner(QObject *parent) : QObject(parent)
     connect(worker, &ScriptRunnerWorker::errorOccurred,
             this, &ScriptRunner::errorOccurred);
 
-    // Upewnij się, że worker zostanie posprzątany razem z wątkiem
+    // Worker zostanie posprzątany razem z wątkiem
     connect(workerThread, &QThread::finished, worker, &QObject::deleteLater);
 
     workerThread->start();
 }
 
 /**
- * @brief Destruktor — zamyka wątek i czeka
+ * @ Destruktor — zamyka wątek i czeka
  */
 ScriptRunner::~ScriptRunner()
 {
@@ -127,7 +127,7 @@ ScriptRunner::~ScriptRunner()
 }
 
 /**
- * @brief Publiczne API — żądanie uruchomienia skryptu (nie blokuje)
+ * @ Publiczne API — żądanie uruchomienia skryptu
  */
 void ScriptRunner::runScript(const QString &scriptContent)
 {
@@ -136,7 +136,7 @@ void ScriptRunner::runScript(const QString &scriptContent)
 }
 
 /**
- * @brief Wykrywa system operacyjny (bez zmian)
+ * @ Wykrywa system operacyjny
  */
 QString ScriptRunner::detectOS()
 {

@@ -6,11 +6,8 @@
 #include <QThread>
 
 /**
- * @brief Worker wykonujący skrypt w osobnym wątku.
+ * @ Worker wykonujący skrypt w osobnym wątku.
  *
- * Implementuje rzeczywiste, widoczne wielowątkowe wykonanie skryptu:
- * - slot `doRunScript` uruchamiany jest w wątku roboczym (QThread).
- * - emituje sygnały `finished` i `errorOccurred`.
  */
 class ScriptRunnerWorker : public QObject
 {
@@ -27,10 +24,8 @@ signals:
 };
 
 /**
- * @brief Klasa zarządzająca workerem i wątkiem.
+ * @ Klasa zarządzająca workerem i wątkiem.
  *
- * - Tworzy QThread i przenosi do niego ScriptRunnerWorker.
- * - `runScript()` emituje sygnał `requestRun` przekazywany do workera (QueuedConnection).
  */
 class ScriptRunner : public QObject
 {

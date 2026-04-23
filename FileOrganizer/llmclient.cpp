@@ -8,7 +8,7 @@
 #include <QProcess>
 
 /**
- * @brief Konstruktor LlmClient
+ * @ Konstruktor LlmClient
  */
 LlmClient::LlmClient(QObject *parent) : QObject(parent)
 {
@@ -20,9 +20,9 @@ void LlmClient::generateScript(const QString &userPrompt,
                                const QString &folderPath,
                                const QString &os)
 {
-    // ----------------------------------------------------------
-    // Definicja system prompt (kryterium: Definicja system prompt)
-    // ----------------------------------------------------------
+    
+    // Definicja system prompt
+    
     QString systemPrompt;
     if (os == "Windows") {
         systemPrompt = "Jestes generatorem skryptow PowerShell. "
@@ -89,9 +89,9 @@ void LlmClient::generateScript(const QString &userPrompt,
             return;
         }
 
-        // ----------------------------------------------------------
+        
         // Parsowanie odpowiedzi i czyszczenie skryptu
-        // ----------------------------------------------------------
+        
         QByteArray raw = reply->readAll();
         QString script;
         QJsonParseError parseError;
@@ -110,13 +110,11 @@ void LlmClient::generateScript(const QString &userPrompt,
             script = QString::fromUtf8(raw);
         }
 
-        // ZMIANA: Bezpieczniejsze czyszczenie
         // 1. Usuń bloki <think>...</think>
         script.remove(QRegularExpression("<think>[\\s\\S]*?</think>",
                                   QRegularExpression::CaseInsensitiveOption));
 
         // 2. Usuń bloki markdown ```powershell...``` lub ```bash...```
-        // Wzorzec: ``` opcjonalny język (powershell/bash) dowolny tekst ```
         script.remove(QRegularExpression("```(?:powershell|bash)?\\s*\\n",
                                         QRegularExpression::CaseInsensitiveOption));
         script.remove(QRegularExpression("\\n?```\\s*$",
@@ -124,7 +122,7 @@ void LlmClient::generateScript(const QString &userPrompt,
         script.remove(QRegularExpression("^```\\s*",
                                         QRegularExpression::CaseInsensitiveOption));
 
-        // 3. Usuń tylko linie CAŁKOWICIE opisowe (nie dotykaj kodu)
+        // 3. Usuń tylko linie  opisowe (nie dotykaj kodu)
         QStringList lines = script.split(QRegularExpression("\\r?\\n"));
         QStringList cleanLines;
         
@@ -141,7 +139,7 @@ void LlmClient::generateScript(const QString &userPrompt,
                 continue;
             }
             
-            // Pomiń linie zaczynające się od opisowych słów (TYLKO jeśli nie ma znaku $ lub Move-Item)
+            // Pomiń linie zaczynające się od opisowych słów
             bool isDescriptiveLine = false;
             QStringList descriptiveStarts = {"First", "Next", "Now", "This", "The", "Note", "Please", 
                                               "Uwaga", "Najpierw", "Nastepnie", "Teraz", "Prosze",
@@ -166,7 +164,7 @@ void LlmClient::generateScript(const QString &userPrompt,
             }
             
             // Dodaj linię do oczyszczonego skryptu
-            cleanLines.append(line); // Zachowaj oryginalne wcięcia!
+            cleanLines.append(line);
         }
         
         script = cleanLines.join("\n").trimmed();
